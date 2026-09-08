@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "RAG Copilot (Interactive)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.rag",
+      "args": ["-i"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Index Chunks into Qdrant (GPU)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.retrieval.vectordb",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Run Ingestion Pipeline",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.ingestion.pipeline",
+      "args": ["--all"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Run Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
+
