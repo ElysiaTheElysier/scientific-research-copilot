@@ -137,3 +137,4 @@ git checkout v2.1-generator-improvement
 # Run CLI interactively with V2.1 defaults
 .venv\Scripts\python.exe src/rag.py "What vector database and embedding model are used in post-graph-rag?"
 ```
+

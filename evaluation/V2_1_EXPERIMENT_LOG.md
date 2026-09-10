@@ -172,3 +172,4 @@ The combination of `qwen2.5:7b` with the evidence-grounded prompt represents the
 3. **Perfect 2.0/2.0 Faithfulness** on Direct Factual and Multi-Hop reasoning.
 4. **100% abstention accuracy** with 0% hallucination.
 5. Critical discovery: Comparison questions remain limited by retrieval recall (Recall@5 = 0.36), which cannot be solved by generator improvements alone and points directly to V3 multi-query/query-decomposition retrieval.
+
