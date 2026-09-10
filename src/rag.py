@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import ollama
 from src.retrieval.bm25 import BM25Index
 from src.retrieval.hybrid import HybridRetriever
+from src.retrieval.query_transform import QueryDecomposer
 from src.retrieval.reranker import Reranker
 from src.retrieval.vectordb import VectorStore
 
@@ -24,7 +25,7 @@ Follow these strict guidelines:
 5. Multimodal Evidence: If a figure visual analysis is present in the context, refer directly to the figure findings, trends, and visual data in your explanation.
 6. Conciseness & Structure: Be direct, structured, and concise. Do not include internal thinking tags or filler commentary."""
 
-RetrievalMode = Literal["dense", "bm25", "hybrid", "v2"]
+RetrievalMode = Literal["dense", "bm25", "hybrid", "v2", "v3"]
 
 
 class ScientificRAG:
@@ -34,29 +35,31 @@ class ScientificRAG:
     - 'dense': Pure vector search (V1 baseline)
     - 'bm25': Pure lexical keyword search
     - 'hybrid': Reciprocal Rank Fusion (Dense + BM25)
-    - 'v2': Full V2/V2.1 pipeline (Dense + BM25 -> RRF -> Two-Stage Cross-Encoder Reranker)
+    - 'v2': Two-Stage Hybrid + Cross-Encoder Reranker
+    - 'v3': Multi-Query Balanced Retrieval + Dynamic Top-K (Default)
     """
 
     def __init__(
         self,
         model_name: str = DEFAULT_MODEL,
         top_k: int = 5,
-        retrieval_mode: RetrievalMode = "v2",
+        retrieval_mode: RetrievalMode = "v3",
         candidate_pool: int = 25,
     ):
         self.model_name = model_name
         self.top_k = top_k
         self.retrieval_mode = retrieval_mode
         self.candidate_pool = candidate_pool
+        self.query_decomposer = QueryDecomposer()
 
         # Initialize modular retrieval components lazily or upfront
         self.vector_store = VectorStore()
-        if retrieval_mode in ("bm25", "hybrid", "v2"):
+        if retrieval_mode in ("bm25", "hybrid", "v2", "v3"):
             self.bm25_index = BM25Index()
         else:
             self.bm25_index = None
 
-        if retrieval_mode in ("hybrid", "v2"):
+        if retrieval_mode in ("hybrid", "v2", "v3"):
             self.hybrid_retriever = HybridRetriever(
                 vector_store=self.vector_store,
                 bm25_index=self.bm25_index,
@@ -64,12 +67,12 @@ class ScientificRAG:
         else:
             self.hybrid_retriever = None
 
-        if retrieval_mode == "v2":
+        if retrieval_mode in ("v2", "v3"):
             self.reranker = Reranker()
         else:
             self.reranker = None
 
-    def retrieve(self, query: str, limit: int = None) -> list[dict]:
+    def retrieve(self, query: str, limit: int = None, sub_queries: list[str] = None) -> list[dict]:
         """Retrieve and rank chunks according to active retrieval_mode."""
         k = limit or self.top_k
 
@@ -88,11 +91,35 @@ class ScientificRAG:
             # 2. Cross-Encoder reranking
             return self.reranker.rerank(query, candidates, top_k=k)
 
+        elif self.retrieval_mode == "v3":
+            if sub_queries is None:
+                sub_queries = self.query_decomposer.decompose(query)
+
+            if len(sub_queries) > 1:
+                # Comparative / multi-part: search multi-query and enforce entity quota
+                dynamic_k = limit or max(self.top_k, 8)
+                candidates = self.hybrid_retriever.search_multi_query(
+                    sub_queries, limit=self.candidate_pool, candidate_pool_per_query=20
+                )
+                return self.reranker.rerank(
+                    query, candidates, top_k=dynamic_k, sub_queries=sub_queries, enforce_quota=True
+                )
+            else:
+                # Single-focus query: standard two-stage hybrid
+                candidates = self.hybrid_retriever.search(query, limit=self.candidate_pool, candidate_pool=self.candidate_pool)
+                return self.reranker.rerank(query, candidates, top_k=k)
+
         else:
             raise ValueError(f"Unknown retrieval mode: {self.retrieval_mode}")
 
     def answer(self, query: str) -> dict:
-        retrieved_chunks = self.retrieve(query, limit=self.top_k)
+        sub_queries = [query]
+        if self.retrieval_mode == "v3":
+            sub_queries = self.query_decomposer.decompose(query)
+            dynamic_k = 8 if len(sub_queries) > 1 else self.top_k
+            retrieved_chunks = self.retrieve(query, limit=dynamic_k, sub_queries=sub_queries)
+        else:
+            retrieved_chunks = self.retrieve(query, limit=self.top_k)
 
         context_blocks = []
         citations = []
@@ -118,6 +145,7 @@ class ScientificRAG:
                 "rrf_score": c.get("rrf_score"),
                 "dense_score": c.get("dense_score"),
                 "bm25_score": c.get("bm25_score"),
+                "sub_query_sources": c.get("sub_query_sources"),
             })
 
         combined_context = "\n\n---\n\n".join(context_blocks)
@@ -133,6 +161,7 @@ class ScientificRAG:
 
         return {
             "query": query,
+            "sub_queries": sub_queries,
             "answer": response["message"]["content"],
             "citations": citations,
             "retrieval_mode": self.retrieval_mode,
@@ -147,9 +176,9 @@ def main():
     parser.add_argument("-i", "--interactive", action="store_true", help="Start interactive CLI loop")
     parser.add_argument(
         "--mode",
-        choices=["dense", "bm25", "hybrid", "v2"],
-        default="v2",
-        help="Retrieval mode (dense=V1, bm25, hybrid, v2=hybrid+reranker; default: v2)",
+        choices=["dense", "bm25", "hybrid", "v2", "v3"],
+        default="v3",
+        help="Retrieval mode (dense=V1, bm25, hybrid, v2=two-stage, v3=multi-query balanced; default: v3)",
     )
     parser.add_argument("--top-k", type=int, default=5, help="Number of chunks in generation context (default: 5)")
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Ollama LLM model to use (default: {DEFAULT_MODEL})")
@@ -163,6 +192,10 @@ def main():
         result = rag.answer(query)
         print("\n" + "=" * 60)
         print(f"QUESTION: {result['query']} (Mode: {result['retrieval_mode'].upper()})")
+        if len(result.get("sub_queries", [])) > 1:
+            print("DECOMPOSED SUB-QUERIES:")
+            for i, sq in enumerate(result["sub_queries"], 1):
+                print(f"  [{i}] {sq}")
         print("=" * 60)
         print(f"\nANSWER:\n{result['answer']}")
         print("\n" + "-" * 60)
@@ -170,7 +203,8 @@ def main():
         for cit in result["citations"]:
             img_info = f" -> {cit['image_path']}" if cit["image_path"] else ""
             extra = f" (Reranker: {cit['reranker_score']:.3f})" if cit.get("reranker_score") is not None else ""
-            print(f"- [{cit['chunk_type']}] Paper: {cit['paper_id']} | Section: {cit['section']}{img_info}{extra}")
+            src = f" [Source Subquery: {cit['sub_query_sources']}]" if cit.get("sub_query_sources") else ""
+            print(f"- [{cit['chunk_type']}] Paper: {cit['paper_id']} | Section: {cit['section']}{img_info}{extra}{src}")
     else:
         print(f"=== Scientific Research Copilot (Mode: {args.mode.upper()}) ===")
         print("Type your question or 'exit' to quit.\n")

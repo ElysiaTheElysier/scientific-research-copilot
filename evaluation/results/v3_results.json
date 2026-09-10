@@ -1,0 +1,1824 @@
+{
+  "summary": {
+    "experiment_id": "v3_multi_query_balanced",
+    "experiment_name": "V3 Multi-Query Balanced (qwen2.5:7b)",
+    "model": "qwen2.5:7b",
+    "hit_at_1": 0.5833,
+    "hit_at_3": 0.7778,
+    "hit_at_5": 0.8333,
+    "hit_at_8": 0.8611,
+    "recall_at_1": 0.3389,
+    "recall_at_3": 0.5537,
+    "recall_at_5": 0.6542,
+    "recall_at_8": 0.6736,
+    "mrr": 0.6938,
+    "mean_correctness": 1.2222,
+    "fully_correct_pct": 58.3,
+    "partially_correct_pct": 5.6,
+    "incorrect_pct": 36.1,
+    "mean_faithfulness": 1.4167,
+    "fully_grounded_pct": 61.1,
+    "mean_keyword_overlap": 0.5354,
+    "citation_correctness": 1.0,
+    "citation_completeness": 0.8056,
+    "abstention_accuracy": 1.0,
+    "hallucination_rate": 0.0,
+    "mean_generation_s": 44.93,
+    "mean_latency_s": 45.99,
+    "p50_latency_s": 16.45,
+    "p95_latency_s": 314.92
+  },
+  "comparison_metrics": {
+    "count": 5,
+    "recall_at_5": 0.4133,
+    "recall_at_8": 0.5533,
+    "correctness": 0,
+    "faithfulness": 0.6,
+    "keyword_overlap": 0.3299,
+    "fully_correct_pct": 0.0
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "question": "Which database management system and vector indexing extension does post-graph-rag use to store text passages, the entity graph, and community summaries in a single storage engine?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "Which database management system and vector indexing extension does post-graph-rag use to store text passages, the entity graph, and community summaries in a single storage engine?"
+      ],
+      "retrieved_chunk_ids": [
+        0,
+        33,
+        1,
+        319,
+        27
+      ],
+      "gold_chunk_ids": [
+        0,
+        1
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "Post-graph-rag uses PostgreSQL as the database management system and pgvector as the vector indexing extension to store text passages, the entity graph, and community summaries in a single storage engine.\n\nThis information is explicitly stated in the context from the Paper: 2608.24921v1 | Section: 3.2 Methodology:\n\n\"The unified PostgreSQL database stores document chunks, entities, communities, and relations.\"\n\nAdditionally, it mentions the use of pgvector for vector passages:\n\n\"The unified PostgreSQL database, which stores document chunks, entities, communities, and relations, is extended with the pgvector extension for storing vector passages.\"\n\nReference:\n- **Paper**: 2608.24921v1 | **Section**: 3.2 Methodology",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.3913,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer captures the essential information about the database management system (PostgreSQL) and the vector indexing extension (pgvector) used by post-graph-rag, as stated in the reference provided. | Faithfulness: The answer is fully grounded in the retrieved context, as it directly quotes the context and supports its claims with details provided in the context.",
+      "retrieval_latency_s": 0.793,
+      "generation_latency_s": 9.9643,
+      "total_latency_s": 10.7575
+    },
+    {
+      "id": "q002",
+      "question": "Which three primary biological knowledge sources and databases are integrated into the multi-source dataset for Homo-RAG?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "Which three primary biological knowledge sources and databases are integrated into the multi-source dataset for Homo-RAG?"
+      ],
+      "retrieved_chunk_ids": [
+        114,
+        119,
+        116,
+        113,
+        134
+      ],
+      "gold_chunk_ids": [
+        114,
+        116
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "The multi-source dataset for Homo-RAG integrates information from three primary biological knowledge sources and databases: ZFIN, UniProt, and PubMed. These databases are described as follows:\n\n1. **ZFIN** [41] serves as the primary source for zebrafish gene information, containing gene identifiers, symbols, names, human orthologs, Gene Ontology annotations, Evidence &amp; Conclusion Ontology terms, and associated publication identifiers [Paper: 2608.25466v1 | Section: 3.1 Dataset description].\n\n2. **UniProt** [42] provides curated functional information for human genes and proteins, including identifiers, protein and gene names, review status, functional descriptions, pathway information, subcellular localization, and associated PubMed identifiers [Paper: 2608.25466v1 | Section: 3.1 Dataset description].\n\n3. **PubMed** offers textual biomedical evidence in the form of publication titles, abstracts, journal information, publication years, DOI metadata, and PubMed identifiers, with a timeline spanning from 1960 and increased publication activity post-1990 [Paper: 2608.25466v1 | Section: 3.1 Dataset description].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.8,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains incorrect or irrelevant information such as the publication identifiers and PubMed identifiers, which are not primary sources for the described databases. The details provided do not accurately reflect the primary sources integrated by Homo-RAG. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded as it accurately summarizes the details provided in the retrieved context, mentioning the sources and their descriptions correctly.",
+      "retrieval_latency_s": 0.1033,
+      "generation_latency_s": 13.6137,
+      "total_latency_s": 13.7171
+    },
+    {
+      "id": "q003",
+      "question": "Which benchmark datasets are used to evaluate STeReO across speech and text modalities in its experimental setup?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "Which benchmark datasets are used to evaluate STeReO across speech and text modalities in its experimental setup?"
+      ],
+      "retrieved_chunk_ids": [
+        262,
+        257,
+        259,
+        265,
+        260
+      ],
+      "gold_chunk_ids": [
+        262
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "Based on the provided context, STeReO is evaluated using two distinct datasets: Spoken SQuAD [29] and MS MARCO [30]. These datasets consist of text queries and TTS-generated audio passages for Spoken SQuAD, and text-only web passages for MS MARCO, respectively. The combined retrieval pool contains approximately 2.8K audio and 9.1K text passages, with non-overlapping passages and minimal query overlap between the datasets. This setup is designed to provide a challenging heterogeneous environment to assess the robustness of crossmodal reranking.\n\nReference: Paper: 2608.26194v1 | Section: 3.1. Experimental Setup",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.9231,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer includes incorrect information such as the specific paper references [2608.26194v1] and the section number [3.1], which are not mentioned in the expected answer and context. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded in the provided context, as it accurately describes the experimental setup and datasets used in the evaluation of STeReO as detailed in the context.",
+      "retrieval_latency_s": 2.3035,
+      "generation_latency_s": 7.3697,
+      "total_latency_s": 9.6733
+    },
+    {
+      "id": "q004",
+      "question": "What are the three commercial RAG systems evaluated in 'Why RAGs Hallucinate', and what benchmark dataset was used as the source of evaluation questions?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "What are the three commercial RAG systems evaluated in 'Why RAGs Hallucinate', and what benchmark dataset was used as the source of evaluation questions?"
+      ],
+      "retrieved_chunk_ids": [
+        318,
+        294,
+        293,
+        95,
+        296
+      ],
+      "gold_chunk_ids": [
+        304,
+        305
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 0,
+        "recall_at_8": 0.0,
+        "hit_at_10": 0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "generated_answer": "The three commercial RAG systems evaluated in the study were OpenAI RAG, Gemini RAG, and CustomGPT.ai RAG. These were compared against a no-retrieval baseline. The evaluation questions were drawn from the SimpleQA-Verified dataset, which consists of 1,000 questions repeated three times. This dataset was specifically designed to test different dimensions of graph-based multi-hop retrieval across MoreHopQA, MultiHop-RAG, and PubMedQA benchmarks [Paper: 2608.26385v1 | Section: 4.1 Datasets].\n\nThe SimpleQA-Verified dataset was extended with per-question knowledge-base coverage flags, enabling the construction of knowledge-gap canaries used in the evaluation framework. The study applied a penalty-aware evaluation framework to these systems, including asymmetric scoring, knowledge-gap canaries, and a blind, cross-family, three-judge grading panel [Paper: 2608.26385v1 | Section: 9 Conclusion].",
+      "correctness": 0,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5455,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The names and descriptions provided in the generated answer are incorrect or differ significantly from the expected answer. The systems mentioned are not correctly identified and their descriptions are different. | Faithfulness: The answer is fully grounded in the retrieved context, as it accurately summarizes the study's findings and details without any fabrication or unsupported claims.",
+      "retrieval_latency_s": 2.5598,
+      "generation_latency_s": 14.9308,
+      "total_latency_s": 17.4907
+    },
+    {
+      "id": "q005",
+      "question": "What are the three sequential stages of the SelfGraphRAG pipeline?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "What are the three sequential stages of the SelfGraphRAG pipeline?"
+      ],
+      "retrieved_chunk_ids": [
+        91,
+        96,
+        89,
+        84,
+        99
+      ],
+      "gold_chunk_ids": [
+        91
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "The three sequential stages of the SelfGraphRAG pipeline are as follows:\n\n1. **Doc2Graph**: This stage constructs the knowledge graph \\( G \\) from the input documents \\( D \\). It involves partitioning each document into non-overlapping text segments (chunks), extracting entities and relations from these chunks, and then condensing the raw mentions into canonical node and edge labels. This stage reuses the GraphRAG indexing pipeline [2] without modification, with the exception of not performing a deduplication or coreference step, which can lead to disconnected nodes for the same real-world entity across different chunks.\n\n2. **SynthGen**: In this stage, the system generates a synthetic training dataset \\( T \\) from the constructed knowledge graph \\( G \\). Specifically, it forms two sets: one of two-hop-connected nodes and another of 3 edges connected by singular nodes. The LLM is then prompted to generate question-answer pairs from these sets, creating the SynthGen dataset, which will be used to train the graph retrieval model.\n\n3. **GraphLM**: This stage trains the function \\( f_\\theta \\) on the generated synthetic dataset \\( T \\) and deploys it for inference. The trained model can then be used to retrieve relevant subgraphs from the knowledge graph \\( G \\) for answering questions.\n\nThese stages are outlined in detail in [Paper: 2608.25123v1 | Section: 3 SelfGraphRAG].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.7083,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains errors and omissions that significantly deviate from the expected answer, such as incorrect descriptions of stages and missing details like the SynthGen process and the GraphLM training mechanism. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded as it accurately describes the three sequential stages of the SelfGraphRAG pipeline as outlined in the provided context.",
+      "retrieval_latency_s": 1.2148,
+      "generation_latency_s": 13.4617,
+      "total_latency_s": 14.6767
+    },
+    {
+      "id": "q006",
+      "question": "According to the taxonomy in 'Retrieved But Not Reliable', what are the three primary high-level security objectives of adversarial attacks against RAG systems?",
+      "question_type": "direct_factual",
+      "answerable": true,
+      "sub_queries": [
+        "According to the taxonomy in 'Retrieved But Not Reliable', what are the three primary high-level security objectives of adversarial attacks against RAG systems?"
+      ],
+      "retrieved_chunk_ids": [
+        45,
+        40,
+        37,
+        61,
+        39
+      ],
+      "gold_chunk_ids": [
+        45
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "According to the taxonomy described in the survey, the three primary high-level security objectives of adversarial attacks against RAG systems are:\n\n1. **Accuracy attacks** - These attacks aim to inject misleading documents to induce incorrect answers.\n2. **Privacy attacks** - These attacks are designed to infer or extract sensitive information through probing or adversarial prompts.\n3. **Fairness attacks** - These attacks focus on injecting biased evidence that amplifies discriminatory outputs.\n\nThese objectives are explicitly mentioned in the context provided from [Paper: 2608.24977v2 | Section: 3 Taxonomy of Adversarial Attacks on RAG], where it states that adversarial attacks on RAG can be broadly organized into three primary objectives: accuracy attacks, fairness attacks, and privacy attacks.",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.6538,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains errors in the descriptions of the attacks and the taxonomy. The taxonomy explicitly mentions accuracy attacks, privacy attacks, and fairness attacks, but the explanations provided are incorrect or misleading. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded in the retrieved context, which explicitly mentions the three primary objectives of adversarial attacks on RAG systems as accuracy attacks, privacy attacks, and fairness attacks.",
+      "retrieval_latency_s": 0.2969,
+      "generation_latency_s": 8.9063,
+      "total_latency_s": 9.2033
+    },
+    {
+      "id": "q007",
+      "question": "What is 'memory-only answerability' in the AWM framework, and what problem does it diagnose in long-document VQA agents?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "What is 'memory-only answerability' in the AWM framework, and what problem does it diagnose in long-document VQA agents?"
+      ],
+      "retrieved_chunk_ids": [
+        143,
+        159,
+        144,
+        142,
+        158
+      ],
+      "gold_chunk_ids": [
+        142,
+        143,
+        144
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 0.6667,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "'Memory-only answerability' in the AWM framework refers to a diagnostic metric designed to evaluate whether a reader can answer the question solely based on the terminal working memory generated by a VQA agent, without access to page images or the agent's trajectory [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n\nThis metric highlights a critical limitation in long-document VQA agents, where agents may reach the correct answer while their terminal working memory contains insufficient or too generic information to support the answer once the page context is removed [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation]. The presence of this gap creates a blind spot in existing evaluation methods, which primarily check final-answer correctness and evidence-page access [Paper: 2608.25618v1 | Section: 1 Introduction].\n\nThe framework defines the memory-only answerability using a frozen reader R that receives the question q and the terminal working memory M term, without any trajectory or page images, and produces a memory-only answer R(q, M term). A judge J evaluates this answer against the gold answer y [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation]. The metric partitions instances into four cases, with the focal case being 'memory-missing correct' (MMC), where the final answer is correct, but the terminal working memory cannot support the answer on its own [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n\nThis diagnostic is crucial because it reveals that existing evaluation methods may not adequately assess the quality of the working memory, which is essential for later, grounded answering [Paper: 2608.25618v1 | Section: 1 Introduction]. By incorporating this metric into the reward signal (AWM-GRPO), the framework aims to encourage agents to maintain answer-supporting evidence in their terminal working memory, thereby improving both final-answer accuracy and memory quality [Paper: 2608.25618v1 | Section: 1 Introduction].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.7143,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key facts and details about memory-only answerability in the AWM framework, including its definition, purpose, and its importance for evaluating the quality of the terminal working memory. | Faithfulness: The answer is grounded in the retrieved context, supporting factual claims with evidence from the provided context.",
+      "retrieval_latency_s": 1.5844,
+      "generation_latency_s": 24.7712,
+      "total_latency_s": 26.3558
+    },
+    {
+      "id": "q008",
+      "question": "How does post-graph-rag handle explicitly denied relations in extracted text, and why does it avoid inverting predicates into labels like 'did_not_have_relationship_with'?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "How does post-graph-rag handle explicitly denied relations in extracted text, and why does it avoid inverting predicates into labels like 'did_not_have_relationship_with'?"
+      ],
+      "retrieved_chunk_ids": [
+        0,
+        33,
+        27,
+        14,
+        322
+      ],
+      "gold_chunk_ids": [
+        14
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 0.25
+      },
+      "generated_answer": "Post-graph-rag handles explicitly denied relations by storing them with the positive predicate and a negated flag, rather than as an inverted predicate such as 'did_not_have_relationship_with' [Paper: 2608.24921v1 | Section: 4.7 Corroboration and negation]. \n\nSpecifically, the text states that \"Relations the text explicitly denies are stored with the positive predicate and a negated flag, not as an inverted predicate such as did\\_not\\_have\\_relationship\\_with\" [Paper: 2608.24921v1 | Section: 4.7 Corroboration and negation]. This approach avoids creating a new, unrelated vocabulary entry, which would complicate traversal or summarization. Instead, with the flag, clustering can down-weight denied edges, synthesis can render them explicitly as denials, and a consumer that does not care can drop them with a single predicate [Paper: 2608.24921v1 | Section: 4.7 Corroboration and negation].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.4419,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key points from the expected answer without additional information or errors. | Faithfulness: The generated answer is fully grounded in the context provided, as it accurately reflects the details about how explicitly denied relations are handled in the Post-graph-rag system, including the storage approach with a negated flag and its implications for traversal and summarization.",
+      "retrieval_latency_s": 1.3811,
+      "generation_latency_s": 14.1603,
+      "total_latency_s": 15.5415
+    },
+    {
+      "id": "q009",
+      "question": "What are 'knowledge-gap canaries' in the penalty-aware RAG evaluation framework, and what type of failure do they isolate?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "What are 'knowledge-gap canaries' in the penalty-aware RAG evaluation framework, and what type of failure do they isolate?"
+      ],
+      "retrieved_chunk_ids": [
+        293,
+        299,
+        318,
+        294,
+        310
+      ],
+      "gold_chunk_ids": [
+        299,
+        304
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 0.5
+      },
+      "generated_answer": "'Knowledge-gap canaries' in the penalty-aware RAG evaluation framework are questions from the evaluation set whose answers are verifiably absent from the knowledge base. They are designed to isolate the type of failure where a system attempts to answer questions that should be beyond its knowledge base, thereby identifying systems that might fabricate answers based on parametric memory rather than withholding when the knowledge is genuinely absent. This mechanism ensures that any answer to a canary question, including factually correct ones, is treated as a measure of parametric leakage, or the tendency of the system to bypass the knowledge base and rely on its own knowledge or assumptions.\n\nBased on the provided context, this type of failure is isolated by explicitly scoring any attempted answer to a canary question as a violation, even if the answer happens to be factually correct. The knowledge-gap canaries are part of the framework that combines asymmetric scoring, knowledge-gap canaries, and a failure-attribution pipeline to provide a more nuanced evaluation of RAG systems. Specifically, the canaries help to distinguish between systems that might confidently fabricate answers on corpora where the parametric memory lacks correct answers, thereby allowing for a more accurate assessment of the systems' true performance and adherence to their designed retrieval policies.\n\n[Paper: 2608.26385v1 | Section: 3.3 Knowledge-Gap Canaries]",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.4865,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key points of the knowledge-gap canaries in the penalty-aware RAG evaluation framework, including their purpose and the type of failure they isolate. | Faithfulness: The generated answer accurately describes the concept and function of knowledge-gap canaries in the penalty-aware RAG evaluation framework, supporting the provided context.",
+      "retrieval_latency_s": 0.4984,
+      "generation_latency_s": 17.0598,
+      "total_latency_s": 17.5583
+    },
+    {
+      "id": "q010",
+      "question": "What is the 'validity-composition problem' identified in evidence-aware RAG evaluation?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "What is the 'validity-composition problem' identified in evidence-aware RAG evaluation?"
+      ],
+      "retrieved_chunk_ids": [
+        290,
+        277,
+        276,
+        289,
+        275
+      ],
+      "gold_chunk_ids": [
+        275,
+        277
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 0.5
+      },
+      "generated_answer": "The 'validity-composition problem' in evidence-aware RAG evaluation identified in the paper refers to the situation where an improvement in the alignment of the retrieval evaluation with the evidence needed for generation does not automatically translate into better downstream decisions or predictions. Specifically, this problem manifests as follows:\n\n- **Evidence-awared evaluation can change retrieval conclusions**, but using the same signal for training does not reliably improve retrieval. The favored retrievers may improve answers under one generation regime but not another, and their retrieval scores do not robustly predict answer quality on unseen topics.\n- **Answer-support-aware evaluation can change which retriever appears best** without reliably improving optimization, held-out system selection, or prediction of answer quality. This is because the effect of the improved evaluation signal is not system-selective, and it does not universally lead to better downstream performance.\n- **Even after verifying that the generator received better evidence**, different answer evaluators can lead to different conclusions about whether the same intervention improved answer quality. This highlights that the reliability of downstream decisions depends on the evaluative process used, not just the quality of the evidence.\n\nIn essence, the validity-composition problem arises because an evaluation signal that is more aligned with the evidence needed for generation does not automatically support the next inference or decision built from it. This problem is empirically demonstrated across the stages of the RAG pipeline, from comparing retrievers to predicting answer quality, and even when the evidence improvement is independently validated by human annotators.\n\nThe paper concludes that the validity of an evaluation signal must be established with respect to the decisions it is used to support, not merely with respect to the construct it is intended to measure. This finding has important methodological implications for RAG evaluation, emphasizing the need for validation that aligns with the intended use of the evaluation signal.\n\nPaper ID: 2608.26379v1\nSection: 8 Discussion",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5122,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key points and mechanisms of the validity-composition problem as described in the expected answer, including the issues with reliability across different stages of the RAG pipeline and the need for validation that aligns with the intended use of the evaluation signal. | Faithfulness: The generated answer accurately reflects the context provided, discussing the key points about the 'validity-composition problem' and its manifestations in the RAG evaluation pipeline.",
+      "retrieval_latency_s": 0.2407,
+      "generation_latency_s": 16.4104,
+      "total_latency_s": 16.6512
+    },
+    {
+      "id": "q011",
+      "question": "In CEMMKG, what is the difference between local context and global context when constructing textual context for a visual element?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "what is the difference between local context and global context in CEMMKG when constructing textual context for a visual element",
+        "CEMMKG research on the use of local and global context in visual element construction"
+      ],
+      "retrieved_chunk_ids": [
+        246,
+        247,
+        244,
+        243,
+        251,
+        245,
+        253,
+        248
+      ],
+      "gold_chunk_ids": [
+        244,
+        246,
+        247
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "In CEMMKG, the local context and global context serve different roles in the textual context design for a visual element. \n\nThe local context, defined as Surrounding Text \\( c_L^i, \\text{surr} \\), Reference Sentence \\( c_L^i, \\text{sent} \\), and Reference Paragraph \\( c_L^i, \\text{para} \\), is focused on providing detailed, fine-grained information immediately surrounding or within the visual element in the document. The surrounding text chunks before and after the visual element (Surrounding Text), the sentences around the reference set (Reference Sentence), and the full paragraphs containing the reference set (Reference Paragraph) are examples of this local context. This local context is crucial for a detailed understanding of the visual element, as it captures image-specific textual information and provides a broader topic context within the document.\n\nOn the other hand, the global context, which includes Reference Paragraph Summary \\( c_L^i, \\text{sum} \\), summarizes the information from the reference paragraphs at a higher level. This context is designed to retain relevant information to the target image while filtering out redundant content, offering a denser and more concise summary compared to the reference paragraphs. The global context helps in capturing the broader document-level semantics, providing a semantic reference that connects the visual element to the overall document theme.\n\nIn summary, the local context is more granular and specific to the immediate vicinity of the visual element, offering detailed evidence for interpreting the visual content, while the global context provides a broader, more thematic understanding that can help in aligning the visual entities with their textual counterparts during multimodal knowledge graph construction.\n\nThis distinction between local and global context is essential for CEMMKG as it supports a more comprehensive understanding of each visual element during Image-to-Graph construction and provides relevant textual evidence for aligning the resulting visual entities with their textual counterparts during modality fusion. These context designs are part of the framework's overall approach to systematically defining and utilizing textual context in GraphRAG-oriented MMKG construction.\n\nReference: Paper: 2608.25986v1 | Sections: 4.1 Multi-Granularity Textual Context, 4.2 Multi-Stage Context Utilization.",
+      "correctness": 1,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5385,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer captures the main distinction between local and global context, but lacks specific details such as the exact nature of the reference set, and does not provide the same level of detail as the expected answer. | Faithfulness: The answer accurately reflects the information provided in the retrieved context, including the distinction between local and global context in CEMMKG, their roles, and how they are utilized in the multimodal knowledge graph construction process.",
+      "retrieval_latency_s": 1.8665,
+      "generation_latency_s": 20.2068,
+      "total_latency_s": 22.7607
+    },
+    {
+      "id": "q012",
+      "question": "What is the difference between test-time and training-time backdoor attacks against RAG systems?",
+      "question_type": "technical_concept",
+      "answerable": true,
+      "sub_queries": [
+        "What are the methods used for test-time backdoor attacks against RAG systems?",
+        "What are the methods used for training-time backdoor attacks against RAG systems?"
+      ],
+      "retrieved_chunk_ids": [
+        47,
+        62,
+        49,
+        37,
+        43,
+        61,
+        72,
+        40
+      ],
+      "gold_chunk_ids": [
+        47
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "Test-time and training-time backdoor attacks against RAG systems differ in how the attacker interacts with the model during the attack process.\n\nTest-time backdoor attacks are activated only when a specific trigger \u03c4 is present in the user query. The attacker cannot modify the model parameters but can inject malicious documents D\u2032 that serve as trigger-aligned context. These documents are retrieved only when the query contains the trigger, while remaining stealthy under clean queries. For example, Phantom (Chaudhari et al., 2026) and AgentPoison (Chen et al., 2024a) assume a white-box setting for both retriever and generator and optimize poisoned content so that triggered queries retrieve adversarial evidence, while clean queries remain benign. PR-Attack (Jiao et al., 2025b) places the trigger in the instruction prompt and jointly optimizes the prompt trigger, soft prompt, and poisoned documents. AIP (Chaturvedi et al., 2025) operates in a black-box setting, constructing an adversarial instructional prompt containing a rare but natural trigger phrase and jointly optimizing it with injected adversarial documents via a genetic algorithm.\n\nTraining-time backdoor attacks involve the attacker implanting the trigger behavior directly into the retriever or generator during training or fine-tuning. This ensures that the attack is activated automatically when the trigger appears at inference time, either through a user query or retrieved evidence. For instance, TrojanRAG (Cheng et al., 2024) represents a retriever backdoor, training a compromised retriever so that triggered queries retrieve attacker-controlled evidence. Similarly, BALD (Jiao et al., 2025a) represents a generator backdoor, finetuning the LLM so that trigger-bearing retrieved evidence activates unsafe behavior.\n\nThese differences highlight the varying degrees of control the attacker has over the model and the points in the RAG pipeline where the attack is activated. Test-time attacks are more subtle and can be harder to detect, while training-time attacks can be more systemic and harder to mitigate through changes to the model's training process. [Paper: 2608.24977v2 | Section: 3.1.1 Targeted Accuracy Attacks]",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.8049,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains incorrect or misleading information about both test-time and training-time backdoor attacks. It incorrectly states that test-time attacks are only activated by a specific trigger in the user query, when the correct explanation is that they are activated only when a query contains a trigger phrase while remaining stealthy under clean queries. The generated answer also incorrectly states that training-time attacks involve the attacker implanting the trigger behavior directly into the retriever or generator during training or fine-tuning, when the correct explanation is that they involve implanting the trigger behavior directly into the retriever or generator during pretraining or fine-tuning. The generated answer also contains irrelevant information about the paper and section references which were not part of the core facts needed to evaluate the correctness of the answer. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded in the provided context, with details and examples from the corpus poisoning and backdoor attacks sections accurately reflected.",
+      "retrieval_latency_s": 1.8961,
+      "generation_latency_s": 30.1162,
+      "total_latency_s": 32.5556
+    },
+    {
+      "id": "q013",
+      "question": "What does the acronym 'MMC' stand for in the AWM paper's four-cell outcome analysis, and what condition defines it?",
+      "question_type": "exact_terminology",
+      "answerable": true,
+      "sub_queries": [
+        "What does the acronym 'MMC' stand for in the AWM paper's four-cell outcome analysis, and what condition defines it?"
+      ],
+      "retrieved_chunk_ids": [
+        145,
+        152,
+        170,
+        147,
+        151
+      ],
+      "gold_chunk_ids": [
+        144
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 0,
+        "recall_at_8": 0.0,
+        "hit_at_10": 0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "generated_answer": "The acronym 'MMC' stands for 'Memory-Missing Correct' in the context of the four-cell outcome analysis described in the paper [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation]. According to the text, MMC is defined by the condition where the agent answered correctly (s ans = 1) but its terminal working memory alone does not support answering (s mem = 0) [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the meaning and definition of the acronym 'MMC' as stated in the expected answer. | Faithfulness: The answer is fully grounded in the retrieved context, as the definition and context of the 'MMC' acronym are directly supported by the provided text.",
+      "retrieval_latency_s": 3.9063,
+      "generation_latency_s": 6.0199,
+      "total_latency_s": 9.9264
+    },
+    {
+      "id": "q014",
+      "question": "What does the acronym 'STeReO' stand for in the context of multimodal retrieval?",
+      "question_type": "exact_terminology",
+      "answerable": true,
+      "sub_queries": [
+        "What does the acronym 'STeReO' stand for in the context of multimodal retrieval?"
+      ],
+      "retrieved_chunk_ids": [
+        257,
+        258,
+        262,
+        231,
+        259
+      ],
+      "gold_chunk_ids": [
+        256,
+        258,
+        259
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 0.3333,
+        "hit_at_5": 1,
+        "recall_at_5": 0.6667,
+        "hit_at_8": 1,
+        "recall_at_8": 0.6667,
+        "hit_at_10": 1,
+        "recall_at_10": 0.6667,
+        "mrr": 0.5
+      },
+      "generated_answer": "The acronym 'STeReO' stands for 'S peech and Te xt Re ranking O rchestrator' [Paper: 2608.26194v1 | Section: 1. Introduction]. This term is used to describe the proposed method in the context of multimodal retrieval, specifically designed to handle and prioritize candidates retrieved from both speech and text databases.",
+      "correctness": 0,
+      "faithfulness": 2,
+      "keyword_overlap": 0.4,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer does not mention 'Orchestrating Heterogeneous Retrievers' which is a key part of the expected answer, and incorrectly adds the word 'O' between 'Re' and 'racter'. | Faithfulness: The generated answer is fully grounded as it accurately defines the acronym STeReO and describes its purpose, which is supported by the context provided.",
+      "retrieval_latency_s": 1.913,
+      "generation_latency_s": 5.5268,
+      "total_latency_s": 7.44
+    },
+    {
+      "id": "q015",
+      "question": "In Homo-RAG, what does the acronym 'ECS' stand for, and what are the five weighted components that comprise it?",
+      "question_type": "exact_terminology",
+      "answerable": true,
+      "sub_queries": [
+        "In Homo-RAG, what does the acronym 'ECS' stand for, and what are the five weighted components that comprise it?"
+      ],
+      "retrieved_chunk_ids": [
+        134,
+        140,
+        119,
+        113,
+        122
+      ],
+      "gold_chunk_ids": [
+        120,
+        121
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 0,
+        "recall_at_8": 0.0,
+        "hit_at_10": 0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "generated_answer": "Based on the provided context, in Homo-RAG, 'ECS' stands for Evidence Consistency Score. ECS is an integral component that integrates source reliability and cross-hop evidence consistency into a reranking mechanism. According to the context, ECS is mentioned in [Paper: 2608.25466v1 | Section: 6 Conclusion], although the specific components that make up ECS are not detailed there. The five weighted components that comprise ECS are not explicitly stated in the given text. However, based on the context, it can be inferred that ECS likely considers the reliability of sources (possibly from UniProt and PubMed) and the consistency of evidence across multiple hops (gene profiles, orthologs, and literature evidence). For precise details on these five components, one would need to refer to the relevant sections of the paper where the ECS mechanism is fully described.",
+      "correctness": 0,
+      "faithfulness": 1,
+      "keyword_overlap": 0.3158,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer is incorrect and contains information that is not in the given context or expected answer. It introduces new terms like 'Evidence Consistency Score' and 'cross-hop evidence consistency' which are not mentioned in the expected answer or provided context. | Faithfulness: The answer provides a correct definition of ECS, but it does not fully ground the answer as the details about the five weighted components are not mentioned in the context. The answer is grounded on the provided context but lacks specific details.",
+      "retrieval_latency_s": 2.7116,
+      "generation_latency_s": 7.6641,
+      "total_latency_s": 10.3759
+    },
+    {
+      "id": "q016",
+      "question": "In the context of the geo-bias evaluation benchmark over public companies, what do 'inductive' and 'deductive' question framing refer to?",
+      "question_type": "exact_terminology",
+      "answerable": true,
+      "sub_queries": [
+        "In the context of the geo-bias evaluation benchmark over public companies, what do 'inductive' and 'deductive' question framing refer to?"
+      ],
+      "retrieved_chunk_ids": [
+        188,
+        186,
+        184,
+        187,
+        183
+      ],
+      "gold_chunk_ids": [
+        184,
+        186
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 0.5
+      },
+      "generated_answer": "In the context of the geo-bias evaluation benchmark over public companies, 'inductive' and 'deductive' question framing refer to the two different directions of inference used in generating multiple-choice questions. Specifically:\n\n- **Inductive Questions** (entity \u2192 attribute): These questions are formulated in such a way that they move from the specific (the company entity) to the general (the attribute). For example, a question might ask, \"Which industry does XYZ Corporation belong to?\" The model must infer the attribute (industry) from the given entity (XYZ Corporation). This type of question is easier as it resembles a direct factual lookup.\n  \n- **Deductive Questions** (attribute \u2192 entity): These questions move from the general (the attribute) to the specific (the company entity). For example, a question might ask, \"In which company does John Doe, the CEO of a financial services firm, work?\" Here, the model must identify the correct entity (company) based on the attribute (John Doe, CEO of a financial services firm). This type of question is harder as it requires identifying the correct entity among plausible alternatives, making it more sensitive to distractors and entity coverage issues.\n\nThe directional asymmetry observed in the results supports the hypothesis (H1) that inductive questions are easier than deductive ones across different models. This asymmetry reflects the fact that inductive questions are more aligned with direct factual lookup, while deductive questions require a more sophisticated form of reasoning that includes identifying the correct entity among plausible alternatives. \n\n[Paper: 2608.25717v1 | Section: 5 Results]",
+      "correctness": 0,
+      "faithfulness": 0,
+      "keyword_overlap": 0.5185,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains inaccuracies and confusions in the explanation of inductive and deductive questions, particularly in how they are framed and the examples provided. | Faithfulness: The answer introduces new terms and concepts not present in the retrieved context, such as 'inductive' and 'deductive' questions and their specific examples, which are not grounded in the provided context.",
+      "retrieval_latency_s": 0.341,
+      "generation_latency_s": 14.8122,
+      "total_latency_s": 15.1533
+    },
+    {
+      "id": "q017",
+      "question": "In SelfGraphRAG, what does the 'Verbalize' function do to an extracted subgraph?",
+      "question_type": "exact_terminology",
+      "answerable": true,
+      "sub_queries": [
+        "In SelfGraphRAG, what does the 'Verbalize' function do to an extracted subgraph?"
+      ],
+      "retrieved_chunk_ids": [
+        88,
+        90,
+        87,
+        91,
+        104
+      ],
+      "gold_chunk_ids": [
+        90
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 0.5
+      },
+      "generated_answer": "In SelfGraphRAG, the 'Verbalize' function linearizes a subgraph into a natural language string. Specifically, for any subgraph \u02c6 G = ( \u02c6 V , \u02c6 E ) \u2286 G, the function Verbalize( \u02c6 G ) is defined to convert each triple ( v i , v j , r ) \u2208 \u02c6 E into the sentence ' v i [r] v j ' and concatenates these sentences in the order they were inserted into the subgraph. This deterministic procedure ensures that the same subgraph always maps to the same string, without any sampling or model call involved [Paper: 2608.25123v1 | Section: 3 SelfGraphRAG].",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5714,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer captures the key details of the 'Verbalize' function's operation accurately. | Faithfulness: The answer accurately reflects the context provided, including the definition and deterministic nature of the 'Verbalize' function as described in the retrieved context.",
+      "retrieval_latency_s": 0.8281,
+      "generation_latency_s": 7.4029,
+      "total_latency_s": 8.2311
+    },
+    {
+      "id": "q018",
+      "question": "How do post-graph-rag and SelfGraphRAG differ in their approach to handling entity deduplication and graph extraction quality?",
+      "question_type": "comparison",
+      "answerable": true,
+      "sub_queries": [
+        "post-graph-rag handling entity deduplication and graph extraction quality",
+        "SelfGraphRAG handling entity deduplication and graph extraction quality"
+      ],
+      "retrieved_chunk_ids": [
+        0,
+        33,
+        96,
+        27,
+        91,
+        104,
+        88,
+        86
+      ],
+      "gold_chunk_ids": [
+        0,
+        9,
+        10,
+        91
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.25,
+        "hit_at_3": 1,
+        "recall_at_3": 0.25,
+        "hit_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "generated_answer": "Post-GraphRAG and SelfGraphRAG handle entity deduplication and graph extraction quality in different ways, as detailed below:\n\n1. **Entity Deduplication:**\n   - **Post-GraphRAG:** Post-GraphRAG does not explicitly mention any entity deduplication step in the provided context. It suggests that entity resolution is treated as an open direction for strengthening the graph's coverage rather than a solved part of the Doc2Graph stage. This implies that Post-GraphRAG might not have an explicit deduplication mechanism to handle the same real-world entity mentioned in different chunks and independently canonicalized into different node labels.\n   - **SelfGraphRAG:** In contrast, SelfGraphRAG does not address entity deduplication explicitly in the provided context either. However, it inherits the design from the unmodified GraphRAG indexing pipeline, which does not include a deduplication or coreference step. This means that G (the global graph) retains two disconnected nodes for one entity when the same real-world entity is mentioned in different chunks and independently canonicalized.\n\n2. **Graph Extraction Quality:**\n   - **Post-GraphRAG:** The context does not provide specific details about Post-GraphRAG's graph extraction quality. It only mentions that Post-GraphRAG has a one-off index-time cost for the ordered-write design, which is reduced by roughly 3.4\u00d7 on the Wikipedia corpus compared to concurrent indexing.\n   - **SelfGraphRAG:** SelfGraphRAG uses a three-stage process: Doc2Graph, SynthGen, and GraphLM. The Doc2Graph stage constructs the knowledge graph (G) from the document corpus using entity and relation extraction. The SynthGen stage generates synthetic QA pairs from the graph structure, which can be seen as a mechanism to ensure the quality of the graph. The GraphLM stage then trains a graph retrieval model on these synthetic QA pairs. This approach can be seen as a way to improve graph extraction quality by leveraging LLMs to generate more structured and relevant graph elements.\n\nIn summary, while both systems use LLMs for graph extraction and retrieval, they differ in their handling of entity deduplication and graph extraction quality. Post-GraphRAG does not explicitly address entity deduplication, while SelfGraphRAG implicitly addresses it through its graph extraction process but does not provide specific mechanisms for deduplication. Both systems rely on LLMs to improve the quality of graph extraction, but SelfGraphRAG's approach is more structured and involves synthetic data generation, which can help in maintaining the quality of the graph.\n\n**References:**\n- Paper: 2608.25123v1 | Section: 3\n- Paper: 2608.25123v1 | Section: 4 B. Lagnese and M. Gaur",
+      "correctness": 0,
+      "faithfulness": 1,
+      "keyword_overlap": 0.3125,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains several inaccuracies and misrepresentations of both Post-GraphRAG and SelfGraphRAG's approaches, particularly regarding entity deduplication and graph extraction quality. | Faithfulness: The answer provides a summary of the differences between Post-GraphRAG and SelfGraphRAG but lacks specific details on entity deduplication and graph extraction quality for both systems, relying heavily on the context for general information.",
+      "retrieval_latency_s": 0.5217,
+      "generation_latency_s": 23.6272,
+      "total_latency_s": 24.149
+    },
+    {
+      "id": "q019",
+      "question": "How do retrieval-stage defenses differ from rerank-stage defenses in mitigating adversarial attacks on RAG pipelines?",
+      "question_type": "comparison",
+      "answerable": true,
+      "sub_queries": [
+        "retrieval-stage defenses mitigating adversarial attacks on RAG pipelines",
+        "rerank-stage defenses mitigating adversarial attacks on RAG pipelines"
+      ],
+      "retrieved_chunk_ids": [
+        44,
+        54,
+        38,
+        37,
+        53,
+        61,
+        56,
+        40
+      ],
+      "gold_chunk_ids": [
+        44,
+        54,
+        55
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 0.6667,
+        "hit_at_5": 1,
+        "recall_at_5": 0.6667,
+        "hit_at_8": 1,
+        "recall_at_8": 0.6667,
+        "hit_at_10": 1,
+        "recall_at_10": 0.6667,
+        "mrr": 1.0
+      },
+      "generated_answer": "Retrieval-stage defenses and rerank-stage defenses differ in their mechanisms and the specific points in the RAG pipeline where they operate to mitigate adversarial attacks.\n\nRetrieval-stage defenses, as described in [Paper: 2608.24977v2 | Section: 4.1 Retrieval-Stage Defenses], focus on strengthening the retriever against adversarial manipulation. They operate before the evidence is passed to the later stages of the RAG pipeline and are designed to improve the accuracy of the initial evidence set. Retrieval-stage defenses can be further categorized into robust retrieval and robust training for retriever.\n\n- **Robust Retrieval** addresses retrieval errors under noise, perturbations, or corpus poisoning while maintaining deployment efficiency. This is achieved through methods like:\n  - **Diagnostic Resources**: Tools that expose retriever biases and provide robustness benchmarks.\n  - **Evidence Filtering**: Techniques that identify and remove noisy, poisoned, or prompt-injected passages.\n  - **Graph-Theoretic Approaches**: Methods that identify a consistent majority from a graph-theoretic perspective.\n\n- **Robust Training for Retriever** involves fine-tuning the retriever on noisy, adversarial, or safety-critical contexts to ensure it learns to use evidence more selectively.\n\nOn the other hand, rerank-stage defenses operate after the evidence has been retrieved and before it is used by the LLM, as described in [Paper: 2608.24977v2 | Section: 4.3 Generation-Stage Defenses]. Rerank-stage defenses aim to mitigate the impact of adversarial evidence by re-ranking the retrieved set based on reliability and consistency. This stage focuses on refining the evidence set to improve the quality of the input to the LLM.\n\n- **Proactive Defenses** include filtering approaches that remove harmful documents from the retrieved set, and detection mechanisms that flag suspicious inputs without necessarily removing them.\n- **Passive Defenses** modify how the generator uses the retrieved evidence, reducing adversarial influence during reasoning or decoding. This includes methods like isolation-based generation, conflict-aware reasoning, and attention and decoding control.\n\nIn summary, retrieval-stage defenses operate earlier in the pipeline, focusing on the initial evidence retrieval, while rerank-stage defenses operate later, refining the evidence set to ensure its quality before it is used by the LLM.",
+      "correctness": 0,
+      "faithfulness": 1,
+      "keyword_overlap": 0.375,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains incorrect information and misrepresents the distinctions between retrieval-stage and rerank-stage defenses as described in the expected answer. It also introduces new terminology and mechanisms not aligned with the expected answer. | Faithfulness: The answer provides a partial explanation of retrieval and rerank-stage defenses but lacks specific details from the context.",
+      "retrieval_latency_s": 1.8173,
+      "generation_latency_s": 26.4162,
+      "total_latency_s": 28.2336
+    },
+    {
+      "id": "q020",
+      "question": "How do 'Why RAGs Hallucinate' and 'Assessing the Downstream Utility of Evidence-Aware Retrieval' address the limitations of conventional retrieval evaluation metrics?",
+      "question_type": "comparison",
+      "answerable": true,
+      "sub_queries": [
+        "Why RAGs Hallucinate the limitations of conventional retrieval evaluation metrics",
+        "Assessing the Downstream Utility of Evidence-Aware Retrieval the limitations of conventional retrieval evaluation metrics"
+      ],
+      "retrieved_chunk_ids": [
+        276,
+        272,
+        289,
+        291,
+        275,
+        277,
+        292,
+        285
+      ],
+      "gold_chunk_ids": [
+        272,
+        275,
+        277,
+        298,
+        299
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 0.2,
+        "hit_at_5": 1,
+        "recall_at_5": 0.4,
+        "hit_at_8": 1,
+        "recall_at_8": 0.6,
+        "hit_at_10": 1,
+        "recall_at_10": 0.6,
+        "mrr": 0.5
+      },
+      "generated_answer": "The papers \"Why RAGs Hallucinate: Penalty-Aware Evaluation of Retrieval-Augmented Generation Systems with Knowledge-Gap Canaries\" (Paper 1) and \"Assessing the Downstream Utility of Evidence-Aware Retrieval\" (Paper 2) address the limitations of conventional retrieval evaluation metrics by exploring how these metrics fail to accurately predict the quality of downstream answers in RAG systems. \n\n**Paper 2: \"Assessing the Downstream Utility of Evidence-Aware Retrieval\"**\n\n- **RQ1 (Evaluation Impact on Retrieval Rankings)**: The paper investigates whether answer-support-aware evaluation changes retrieval rankings. It finds that such evaluations can alter retriever rankings, but these changes are not necessarily better or more reliable than random perturbations. (Paper 2608.26379v1, Section 3, RQ1)\n\n- **RQ2 (Optimization and System Selection)**: The paper questions whether answer-support-aware evaluations can be used to optimize retrieval or select better systems. It discovers that answer-support-aware evaluations can align more closely with downstream performance, but this does not consistently support better system selection across different generation regimes. (Paper 2608.26379v1, Section 3, RQ2)\n\n- **RQ3 (Predictive Validity of Evidence-Aware Scores)**: The paper tests whether answer-support-aware retrieval scores can predict answer quality on unseen topics. It finds that these scores are no more predictive than conventional relevance and combining both signals does not improve the predictive power. (Paper 2608.26379v1, Section 6, RQ3)\n\n- **Validity-Composition Problem**: The findings highlight a validity-composition problem, where better alignment at one stage (e.g., evaluation) does not automatically validate downstream uses of the same signal (e.g., system selection or prediction of answer quality). (Paper 2608.26379v1, Section 3, RQ3)\n\n**Paper 1: \"Why RAGs Hallucinate: Penalty-Aware Evaluation of Retrieval-Augmented Generation Systems with Knowledge-Gap Canaries\"**\n\n- **RQ2 (Optimization and System Selection)**: Similar to Paper 2, this paper also explores the use of answer support in optimizing retrieval and selecting better systems. It finds that answer-support-aware evaluations can align more closely with downstream performance but do not consistently support better system selection. (Paper 2608.26385v1, Section 3, RQ2)\n\n- **Predictive Validity**: The paper further tests the predictive validity of answer-support-aware scores and finds that these scores are no more predictive of answer quality on unseen topics than conventional relevance. (Paper 2608.26385v1, Section 6, Predictive Validity of Evidence-Aware Scores)\n\n- **Nonlinear Relationships**: The paper also examines whether nonlinear relationships might reveal a robust transferable relationship between retrieval effectiveness and answer quality. It finds that both linear and nonlinear models yield negative cross-validated \\( R^2 \\) values, indicating that answer-support-aware scores do not provide a robust transferable prediction of answer quality on unseen topics. (Paper 2608.26385v1, Section 6, Predictive Validity of Evidence-Aware Scores)\n\nIn summary, both papers highlight that conventional retrieval evaluation metrics, including those based on answer support, do not reliably predict the quality of downstream answers in RAG systems. They provide evidence that better alignment at one stage (e.g., evaluation) does not necessarily translate to better performance at other stages (e.g., system selection or answer quality prediction), thus addressing the limitations of conventional metrics.",
+      "correctness": 0,
+      "faithfulness": 0,
+      "keyword_overlap": 0.38,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer does not accurately capture the key details and mechanisms presented in both papers 'Why RAGs Hallucinate' and 'Assessing the Downstream Utility of Evidence-Aware Retrieval'. It misinterprets the findings and does not provide the necessary details to support the conclusions drawn from the papers. | Faithfulness: The generated answer does not accurately reflect the content or findings of the provided context. It introduces new papers and does not ground its claims in the information provided.",
+      "retrieval_latency_s": 2.8294,
+      "generation_latency_s": 312.0895,
+      "total_latency_s": 314.9196
+    },
+    {
+      "id": "q021",
+      "question": "How does STeReO compare with conventional pipeline-cascade approaches (ASR + Text RAG) in retrieving spoken audio content?",
+      "question_type": "comparison",
+      "answerable": true,
+      "sub_queries": [
+        "STeReO retrieving spoken audio content",
+        "conventional pipeline-cascade approaches (ASR + Text RAG) retrieving spoken audio content"
+      ],
+      "retrieved_chunk_ids": [
+        258,
+        265,
+        262,
+        264,
+        263,
+        261,
+        269,
+        37
+      ],
+      "gold_chunk_ids": [
+        258,
+        259
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "generated_answer": "Based on the information provided in the table and the references, there is no direct comparison between STeReO and conventional pipeline-cascade approaches (ASR + Text RAG) for retrieving spoken audio content. However, we can infer insights from the context and the methods presented in the papers.\n\n### Insights from the Context:\n\n1. **ASR + Text RAG Pipeline**:\n   - The conventional pipeline-cascade approach involves two main steps: Automatic Speech Recognition (ASR) and Text RAG (Retrieval-Augmented Generation).\n   - ASR converts spoken audio into text, which is then used as input for the RAG system to retrieve relevant information from a knowledge base or corpus.\n\n2. **STeReO**:\n   - STeReO, as described in the paper [18], is a unified large-scale audio-language model designed to understand and generate from spoken audio content directly, without the need for intermediate ASR steps.\n   - Specifically, STeReO is designed to handle multimodal inputs, including both audio and text, and is capable of performing both retrieval and generation tasks directly on the audio data.\n\n### Comparison:\n\n- **Efficiency and Directness**:\n  - **STeReO** (Qwen-audio) can process audio directly, potentially reducing latency and improving efficiency compared to the ASR + Text RAG pipeline, where ASR introduces an additional step.\n  - **[18]**: \"Qwen-audio: Advancing universal audio understanding via unified large-scale audio-language models,\" suggests that STeReO can handle audio directly, which could lead to better performance in terms of speed and accuracy.\n\n- **Accuracy and Robustness**:\n  - **STeReO** is designed to handle audio directly, which might lead to more accurate and robust results since it avoids potential errors introduced by ASR.\n  - **[18]**: \"Qwen-audio\" likely leverages advanced techniques to improve the understanding and generation of spoken audio, which could result in better retrieval accuracy.\n\n- **Privacy and Security**:\n  - **STeReO** might offer enhanced privacy and security since it does not require the audio to be transcribed to text, which could be beneficial in scenarios where text transcription might pose privacy risks.\n\n- **Fairness and Bias**:\n  - **STeReO** could potentially reduce biases associated with ASR systems, which might introduce errors due to variability in speech patterns, accents, or background noise.\n\n### Conclusion:\n\nWhile the provided table and references do not directly compare STeReO with ASR + Text RAG, the design and capabilities of STeReO suggest that it can offer advantages in terms of efficiency, accuracy, robustness, privacy, and security. For retrieving spoken audio content, STeReO (Qwen-audio) likely performs better than the conventional ASR + Text RAG pipeline by handling audio directly and leveraging unified large-scale audio-language models.\n\n**References:**\n- [18] Y. Chu, J. Xu, X. Zhou, Q. Yang, S. Zhang, Z. Yan, C. Zhou, and J. Zhou, 'Qwen-audio: Advancing universal audio understanding via unified large-scale audio-language models,' 2023. [Online]. Available: https://arxiv.org/abs/2311.07919",
+      "correctness": 0,
+      "faithfulness": 0,
+      "keyword_overlap": 0.3261,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer does not provide a direct comparison between STeReO and ASR + Text RAG, and instead focuses on general characteristics of both approaches without addressing the specific advantages of STeReO as compared to the conventional pipeline. The answer lacks specific information about how STeReO compares to the ASR + Text RAG in terms of error propagation, preservation of rich signals, and overall performance in retrieving spoken audio content. | Faithfulness: The provided answer does not directly compare STeReO with the ASR + Text RAG pipeline as requested, and instead describes the capabilities and advantages of STeReO without providing a comparison or supporting evidence from the context.",
+      "retrieval_latency_s": 1.797,
+      "generation_latency_s": 318.678,
+      "total_latency_s": 320.4751
+    },
+    {
+      "id": "q022",
+      "question": "How does the impact of misleading context differ from the impact of distraction context on model accuracy in company factual QA?",
+      "question_type": "comparison",
+      "answerable": true,
+      "sub_queries": [
+        "misleading context model accuracy in company factual QA",
+        "distraction context model accuracy in company factual QA"
+      ],
+      "retrieved_chunk_ids": [
+        180,
+        188,
+        217,
+        218,
+        181,
+        200,
+        185,
+        183
+      ],
+      "gold_chunk_ids": [
+        185,
+        186
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 0.1429
+      },
+      "generated_answer": "The impact of misleading context differs from that of distraction context on model accuracy in company factual QA, as evidenced by the structured evaluation framework introduced in the paper (2608.25717v1, Section 4.2 Experiment Design and 4.3 Results).\n\n1. **Misleading Context**: This condition specifically tests whether the model will copy incorrect information provided in the context. The paper's findings show that misleading context induces systematic copying errors (2608.25717v1, Section 4.3 Results, Fifth Finding). This suggests that models are more likely to incorporate erroneous information into their responses when it is presented as context, leading to decreased accuracy.\n\n2. **Distraction Context**: This condition tests the model's robustness to irrelevant or unrelated information. The results indicate that distraction context does not significantly affect model performance, as the accuracy gains from perfect context are correlated with baseline knowledge (2608.25717v1, Section 4.2 Experiment Design, Fourth Finding). This implies that models are generally less likely to be misled by irrelevant information, suggesting a higher tolerance for distraction context compared to misleading context.\n\nIn summary, the impact of misleading context on model accuracy is more detrimental, as it leads to systematic copying errors. In contrast, distraction context does not significantly impair model performance, indicating that models are better at filtering out irrelevant information. This difference is supported by the structured evaluation framework and the reported findings from the experiments conducted (2608.25717v1, Section 4.2 Experiment Design and 4.3 Results).",
+      "correctness": 0,
+      "faithfulness": 1,
+      "keyword_overlap": 0.2558,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer does not accurately capture the key details about the impact of misleading and distraction contexts on model accuracy as stated in the expected answer. The generated answer introduces new facts not present in the expected answer, such as the structured evaluation framework, which is not discussed in the expected answer. | Faithfulness: The answer does not provide specific details from the context about the impact of distraction context, which is a gap in grounding the answer fully.",
+      "retrieval_latency_s": 0.6825,
+      "generation_latency_s": 14.9427,
+      "total_latency_s": 15.6252
+    },
+    {
+      "id": "q023",
+      "question": "Explain the multi-hop retrieval chain in Homo-RAG from an uncharacterized zebrafish gene query to the final evidence-grounded function prediction.",
+      "question_type": "multi_hop_reasoning",
+      "answerable": true,
+      "sub_queries": [
+        "Explain the multi-hop retrieval chain in Homo-RAG from an uncharacterized zebrafish gene query to the final evidence-grounded function prediction."
+      ],
+      "retrieved_chunk_ids": [
+        113,
+        122,
+        119,
+        110,
+        127
+      ],
+      "gold_chunk_ids": [
+        113,
+        114,
+        116
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 0.3333,
+        "hit_at_5": 1,
+        "recall_at_5": 0.3333,
+        "hit_at_8": 1,
+        "recall_at_8": 0.3333,
+        "hit_at_10": 1,
+        "recall_at_10": 0.3333,
+        "mrr": 1.0
+      },
+      "generated_answer": "The multi-hop retrieval chain in Homo-RAG from an uncharacterized zebrafish gene query to the final evidence-grounded function prediction involves three stages, as detailed below:\n\n1. **Gene-Level Retrieval (Hop 1):**\n   The target zebrafish gene provides the initial biological anchor for retrieval. In this first hop, the model retrieves the corresponding gene-level profile and associated biological information from structured knowledge sources such as ZFIN and UniProt. The retrieved information establishes the initial biological context for subsequent retrieval operations.\n\n2. **Homology Expansion (Hop 2):**\n   The retrieved gene information from the first hop is then used to identify the corresponding human ortholog. This ortholog serves as a biologically informed bridge to richer functional annotations and literature resources available for better-characterized genes. This step leverages the homology relationship between zebrafish and human orthologs to expand the search towards more comprehensive functional knowledge.\n\n3. **Functional and Literature Retrieval (Hop 3):**\n   The identified human ortholog is used to retrieve structured functional knowledge and supporting biomedical literature from sources like UniProt and PubMed. This final hop integrates information across multiple biological knowledge layers, providing a comprehensive evidence pool that is used to ground the gene function prediction.\n\nThe retrieval process is enhanced by a homology-guided query reformation strategy. Initially, the query focuses on the zebrafish gene. However, as the retrieval progresses, the query context shifts to the human ortholog, transforming the zebrafish-specific retrieval objective into a human-ortholog-centered evidence retrieval objective. This approach allows the retrieval process to progressively move from the target organism toward biologically informative homologous evidence rather than relying solely on the original query.\n\nAfter the retrieval chain, the generated evidence undergoes an evidence ranking process that considers semantic relevance, entity matching, orthology information, source reliability, and literature-association signals. This ensures that the highest-ranked, most biologically relevant and reliable evidence is selected for constructing a compact context. Finally, a language model generates a gene-function prediction based on this evidence-grounded context.\n\nThe entire process is formalized by the following stages:\n- Initial zebrafish gene query\n- Gene-level retrieval of the corresponding zebrafish gene profile\n- Homology expansion to identify the human ortholog\n- Functional and literature retrieval of evidence related to the human ortholog\n- Evidence ranking to prioritize the most relevant and reliable evidence\n- Context construction and gene-function prediction generation\n\nThis multi-hop retrieval and evidence-grounded context construction mechanism forms the core of the Homo-RAG framework, enabling robust and reliable gene function prediction in non-model organisms. [Paper: 2608.25466v1 | Section: 3.6 Homology-Aware Multi-Hop Retrieval with query reformation]",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5862,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the multi-hop retrieval chain with correct steps and details, matching the expected answer closely. | Faithfulness: The answer is fully grounded as it accurately describes the multi-hop retrieval process and the evidence-grounded context construction mechanism, which are explicitly detailed in the retrieved context.",
+      "retrieval_latency_s": 0.1309,
+      "generation_latency_s": 25.8596,
+      "total_latency_s": 25.9906
+    },
+    {
+      "id": "q024",
+      "question": "Why does the combination of final-answer correctness and memory-only answerability in AWM-GRPO prevent agents from receiving high rewards for lucky guesses?",
+      "question_type": "multi_hop_reasoning",
+      "answerable": true,
+      "sub_queries": [
+        "Why does the combination of final-answer correctness and memory-only answerability in AWM-GRPO prevent agents from receiving high rewards for lucky guesses?"
+      ],
+      "retrieved_chunk_ids": [
+        158,
+        147,
+        169,
+        156,
+        152
+      ],
+      "gold_chunk_ids": [
+        142,
+        143,
+        144
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 0,
+        "recall_at_8": 0.0,
+        "hit_at_10": 0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "generated_answer": "Based on the provided context, the combination of final-answer correctness and memory-only answerability in AWM-GRPO prevents agents from receiving high rewards for lucky guesses because AWM-GRPO introduces a memory-refinement preference that distinguishes between memory-supported correct and memory-missing correct trajectories (Paper: 2608.25618v1 | Section: C.5 Reward discrimination under AWM).\n\nSpecifically, AWM-GRPO uses a piecewise AWM reward (denoted as \\( R_{AWM} \\)) with distinct values for four outcome cases: (1,1), (1,0), (0,1), and (0,0), which are memory-supported correct, memory-missing correct, final-answer error, and unresolved error, respectively. The reward structure ensures that memory-supported correct trajectories receive a higher value than memory-missing correct trajectories, even when the final answer is correct. This differentiation is crucial because it prevents agents from achieving high rewards simply by making a lucky guess without retaining the relevant information in memory (Paper: 2608.25618v1 | Section: Three effects are visible).\n\nTo illustrate, the reward structure allows the agent to receive lower rewards for memory-missing correct trajectories compared to memory-supported correct trajectories, thereby discouraging the agent from making lucky guesses that do not involve retaining the necessary information (Paper: 2608.25618v1 | Section: Three effects are visible).\n\nIn summary, the memory-refinement preference in AWM-GRPO ensures that agents are rewarded based on their ability to correctly retain and utilize memory, rather than merely providing a correct final answer by chance. This mechanism prevents agents from receiving high rewards for lucky guesses by penalizing them for memory-missing correct trajectories.",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.4231,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key points of AWM-GRPO's reward structure and its mechanism to prevent high rewards for lucky guesses by penalizing memory-missing correct trajectories. | Faithfulness: The answer is fully grounded in the provided context, as it accurately describes the reward structure and its implications for preventing lucky guesses by rewarding memory-supported correct trajectories over memory-missing correct trajectories.",
+      "retrieval_latency_s": 1.2556,
+      "generation_latency_s": 17.6052,
+      "total_latency_s": 18.8608
+    },
+    {
+      "id": "q025",
+      "question": "Why can't standard embedding-based retrieval solve multi-hop questions over document corpora, and how does SelfGraphRAG's two-hop synthetic training chain enable its graph retriever to bridge this gap?",
+      "question_type": "multi_hop_reasoning",
+      "answerable": true,
+      "sub_queries": [
+        "Why can't standard embedding-based retrieval solve multi-hop questions over document corpora, and how does SelfGraphRAG's two-hop synthetic training chain enable its graph retriever to bridge this gap?"
+      ],
+      "retrieved_chunk_ids": [
+        86,
+        84,
+        99,
+        104,
+        95
+      ],
+      "gold_chunk_ids": [
+        83,
+        86,
+        90,
+        92
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.25,
+        "hit_at_3": 1,
+        "recall_at_3": 0.25,
+        "hit_at_5": 1,
+        "recall_at_5": 0.25,
+        "hit_at_8": 1,
+        "recall_at_8": 0.25,
+        "hit_at_10": 1,
+        "recall_at_10": 0.25,
+        "mrr": 1.0
+      },
+      "generated_answer": "Standard embedding-based retrieval cannot solve multi-hop questions over document corpora because it assigns relevance based on surface-level semantic similarity to the query string. This approach fails for multi-hop questions where the relevant nodes may be semantically distant from the query string [11]. According to the context from Paper: 2608.25123v1 | Section: 2.2 Knowledge Graph Extraction and Graph-Based RAG, embedding-based retrieval limitations are explicitly highlighted as a reason why standard RAG and LightRAG methods struggle with multi-hop questions.\n\nSelfGraphRAG's two-hop synthetic training chain addresses this limitation by generating synthetic question-answer pairs from automatically extracted knowledge graphs. This training set is specifically designed to cover multi-hop reasoning scenarios, where nodes that are not directly adjacent may be relevant to the query. By training a graph retrieval model on this synthetic corpus, SelfGraphRAG can learn to follow two-hop relational paths regardless of surface-level lexical overlap [11]. This learned ability to traverse the graph structure directly addresses the failure modes of embedding-based methods, as demonstrated by the significant performance gains on the MultiHop-RAG benchmark, where SelfGraphRAG achieves an F1 score of 24.62 compared to 2.60 for standard RAG and 0.98 for LightRAG [2608.25123v1 | Section: 5.1 SelfGraphRAG Consistently Outperforms Embedding-Based Baselines].\n\nThe empirical evidence supporting this claim is found in Table 1 of the same section, which shows that SelfGraphRAG outperforms embedding-based baselines on the MoreHopQA benchmark, particularly in the F1 score. This table indicates that SelfGraphRAG's synthetic training method enables better performance on complex, multi-hop questions, while embedding-based methods like RAG and LightRAG struggle due to their reliance on surface-level similarity [2608.25123v1 | Section: 5.1 SelfGraphRAG Consistently Outperforms Embedding-Based Baselines].",
+      "correctness": 0,
+      "faithfulness": 2,
+      "keyword_overlap": 0.4516,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer contains inaccuracies and incorrect information. It incorrectly attributes the limitations of embedding-based retrieval to surface-level semantic similarity, which is not the main issue. The answer also misrepresents the mechanism of SelfGraphRAG's two-hop synthetic training chain and the performance gains over embedding-based methods. The statement that embedding-based methods struggle due to surface-level similarity is not supported by the provided information and contradicts the expected answer. | Faithfulness: The generated answer is fully grounded in the retrieved context, as it accurately reflects the limitations of embedding-based retrieval and the capabilities of SelfGraphRAG, as described in the context.",
+      "retrieval_latency_s": 1.2726,
+      "generation_latency_s": 20.1594,
+      "total_latency_s": 21.4321
+    },
+    {
+      "id": "q026",
+      "question": "Trace how post-graph-rag's extraction-time invariants prevent cascading errors during multi-hop graph traversal at retrieval time.",
+      "question_type": "multi_hop_reasoning",
+      "answerable": true,
+      "sub_queries": [
+        "Trace how post-graph-rag's extraction-time invariants prevent cascading errors during multi-hop graph traversal at retrieval time."
+      ],
+      "retrieved_chunk_ids": [
+        0,
+        33,
+        1,
+        27,
+        86
+      ],
+      "gold_chunk_ids": [
+        0,
+        1,
+        9,
+        10,
+        11
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.2,
+        "hit_at_3": 1,
+        "recall_at_3": 0.4,
+        "hit_at_5": 1,
+        "recall_at_5": 0.4,
+        "hit_at_8": 1,
+        "recall_at_8": 0.4,
+        "hit_at_10": 1,
+        "recall_at_10": 0.4,
+        "mrr": 1.0
+      },
+      "generated_answer": "Post-graph-rag's extraction-time invariants prevent cascading errors during multi-hop graph traversal at retrieval time by ensuring that only well-formed and meaningful triples are inserted into the graph, thus maintaining the quality and integrity of the knowledge graph. Specifically, the invariants operate at the extraction stage and enforce a series of rules that govern what can become graph structure, thereby reducing the likelihood of errors propagating through the graph.\n\nThe key extraction-time invariants that contribute to this include:\n\n1. **Predicate Normalization and Controlled-Vocabulary Snapping:** These invariants ensure that predicates (relationship types) are normalized and optionally mapped to a controlled vocabulary. This normalizes the edge labels, making them consistent and queryable, thus reducing ambiguity in multi-hop queries. For instance, \"worked_with\" can be consistently represented, preventing different interpretations that could lead to errors (Section 8.4 of Paper: 2608.24921v1).\n\n2. **Rejection of Vague, Pronominal, Conjunctive, Over-Long, and Purely Quantitative Names:** By rejecting such names, post-graph-rag avoids introducing triples that could be misinterpreted or lead to incorrect inferences during traversal. This ensures that only meaningful entities and relations are included, minimizing the risk of cascading errors (Section 4 of Paper: 2608.24921v1).\n\n3. **Alias-Based Entity Resolution with Longest-Form Canonicalization Rule:** This invariant ensures that entities are consistently resolved, reducing the risk of errors arising from the same entity being represented in multiple ways. Proper resolution ensures that the graph remains coherent, and any multi-hop traversal will follow a consistent path (Section 4 of Paper: 2608.24921v1).\n\n4. **Provenance-Counted Corroboration:** This invariant records the source and count of evidence supporting each relation, ensuring that only well-supported relations are included in the graph. This enhances the reliability of the graph, making multi-hop traversals more robust and less prone to errors (Section 4 of Paper: 2608.24921v1).\n\n5. **Explicit Negation:** By explicitly marking negated relations, post-graph-rag avoids the inclusion of false or misleading information. This ensures that any multi-hop query will not be misled by incorrect information, maintaining the integrity of the graph (Section 4 of Paper: 2608.24921v1).\n\nThese invariants collectively ensure that the graph is of high quality, reducing the likelihood of errors propagating through multi-hop traversals. By enforcing strict rules during extraction, post-graph-rag minimizes the introduction of erroneous or ambiguous triples, thereby maintaining the reliability and consistency of the knowledge graph at retrieval time (Section 4 of Paper: 2608.24921v1).",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.2903,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key extraction-time invariants and their roles in preventing cascading errors during multi-hop graph traversal, as described in the expected answer. | Faithfulness: The generated answer directly reflects and supports the claims made in the retrieved context, providing a clear and detailed explanation for each of the extraction-time invariants mentioned.",
+      "retrieval_latency_s": 0.5142,
+      "generation_latency_s": 26.1766,
+      "total_latency_s": 26.6909
+    },
+    {
+      "id": "q027",
+      "question": "Synthesize the findings of 'When RAG Fails to Equalize' and 'Why RAGs Hallucinate' regarding how commercial LLMs and RAG systems behave when external context is absent or incomplete.",
+      "question_type": "multi_hop_reasoning",
+      "answerable": true,
+      "sub_queries": [
+        "Synthesize the findings of 'When RAG Fails to Equalize' and 'Why RAGs Hallucinate' regarding how commercial LLMs and RAG systems behave when external context is absent or incomplete."
+      ],
+      "retrieved_chunk_ids": [
+        85,
+        38,
+        59,
+        294,
+        315
+      ],
+      "gold_chunk_ids": [
+        180,
+        186,
+        298,
+        299,
+        308
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 0,
+        "recall_at_5": 0.0,
+        "hit_at_8": 0,
+        "recall_at_8": 0.0,
+        "hit_at_10": 0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "generated_answer": "Based on the provided context, the behavior of commercial LLMs and RAG systems when external context is absent or incomplete is described in two papers: [Paper: 2608.26385v1 | Section: 1 Introduction] and [Paper: 2608.26385v1 | Section: 6 Why RAG Systems Hallucinate].\n\nIn [Paper: 2608.26385v1 | Section: 1 Introduction], the paper outlines the challenges faced by RAG systems when deployed over private knowledge. It highlights that the evaluation metrics commonly used to compare RAG systems (accuracy over attempted answers, or accuracy over all questions) score an ungrounded guess and a grounded answer identically if both happen to be right, and score a confident fabrication and an honest \"I don't know\" identically at zero, when the system lacks the answer. This scoring mechanism can lead to models being trained and selected to hallucinate, as guessing strictly dominates abstaining under such scoring.\n\nIn [Paper: 2608.26385v1 | Section: 6 Why RAG Systems Hallucinate], the behavior of RAG systems is analyzed based on the audit data collected during the evaluation framework. The paper provides insights into the different failure modes of RAG systems when the external context (retrieval evidence) is absent or incomplete. It identifies four failure mechanisms, ordered by measured frequency:\n\n1. **Parametric Leakage on Knowledge Gaps**: This is the largest and most system-dependent source of failure, with violation rates ranging from 0% to 98% depending on the system's policy. This refers to the situations where the knowledge base has no information to offer, leading to incorrect answers or the systems generating answers based on their internal knowledge.\n\n2. **Retrieval-Supported Wrong Answers**: These occur when sources are returned by retrieval, but the answer is still wrong. The frequency of such occurrences is about 2% of the answers for every RAG system.\n\n3. **Over-Caution**: Declining to answer despite having usable evidence. This accounts for 11% of CustomGPT.ai's abstentions, which carried citations.\n\n4. **Retrieval Gaps Handled Correctly by Abstention**: This scenario incurs accuracy loss but does not affect trust, as the system correctly refrains from answering when it lacks the necessary information.\n\nThe paper emphasizes that traditional accuracy metrics fail to distinguish between these failure modes, thereby misguiding the training and selection of models. Instead, the framework introduced in the paper employs penalty-aware scoring to price the first two failure mechanisms (parametric leakage and retrieval-supported wrong answers) while leaving the correct abstention unpunished.\n\nIn summary, the behavior of commercial LLMs and RAG systems when external context is absent or incomplete is characterized by a high risk of hallucination due to the scoring mechanisms used in evaluations, as well as specific failure mechanisms related to knowledge gaps, retrieval-supported wrong answers, over-caution, and correct abstention.",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.3125,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer accurately captures the key facts and mechanisms from the provided context without any contradictions or missing details. | Faithfulness: The generated answer is fully grounded in the provided context, as it directly quotes and elaborates on the information about the failure modes and scoring mechanisms of RAG systems as described in the context.",
+      "retrieval_latency_s": 0.3114,
+      "generation_latency_s": 33.483,
+      "total_latency_s": 33.7945
+    },
+    {
+      "id": "q028",
+      "question": "Based on Figure 1 in post-graph-rag, how are the LLM extractor and validation gates structurally separated, and how is data stored in PostgreSQL?",
+      "question_type": "figure_related",
+      "answerable": true,
+      "sub_queries": [
+        "Based on Figure 1 in post-graph-rag, how are the LLM extractor and validation gates structurally separated, and how is data stored in PostgreSQL?"
+      ],
+      "retrieved_chunk_ids": [
+        319,
+        2,
+        0,
+        33,
+        9
+      ],
+      "gold_chunk_ids": [
+        319,
+        0,
+        1
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 0.6667,
+        "hit_at_5": 1,
+        "recall_at_5": 0.6667,
+        "hit_at_8": 1,
+        "recall_at_8": 0.6667,
+        "hit_at_10": 1,
+        "recall_at_10": 0.6667,
+        "mrr": 1.0
+      },
+      "generated_answer": "Based on Figure 1 in post-graph-rag [Paper: 2608.24921v1 | Section: 2 Related Work], the LLM extractor and validation gates are structurally separated stages within the system. The LLM extractor is described as a generative component and is treated as untrusted. In contrast, the validation gates are deterministic and decide what data becomes graph structure. \n\nData storage in PostgreSQL is unified, with document chunks, entities, communities, and relations stored in one set of tables within a single PostgreSQL database. This database is partitioned by realm and space, enabling efficient management and retrieval of data across different contexts or scopes.\n\nReference: \n- Paper: 2608.24921v1 | Section: 2 Related Work",
+      "correctness": 0,
+      "faithfulness": 2,
+      "keyword_overlap": 0.5111,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer is incorrect as it does not accurately describe the structural separation of LLM extractor and validation gates. It also does not mention that data is stored in a single PostgreSQL database partitioned by realm and space, which is a key point in the expected answer. | Faithfulness: The answer is fully grounded in the retrieved context, supporting all factual claims with details from the context.",
+      "retrieval_latency_s": 0.6217,
+      "generation_latency_s": 9.6628,
+      "total_latency_s": 10.2846
+    },
+    {
+      "id": "q029",
+      "question": "According to Figure 2 in post-graph-rag, what are the three quantitative effects of gleaning, controlled vocabulary, and validation gates on the Wikipedia corpus?",
+      "question_type": "figure_related",
+      "answerable": true,
+      "sub_queries": [
+        "According to Figure 2 in post-graph-rag, what are the three quantitative effects of gleaning, controlled vocabulary, and validation gates on the Wikipedia corpus?"
+      ],
+      "retrieved_chunk_ids": [
+        25,
+        322,
+        26,
+        320,
+        319
+      ],
+      "gold_chunk_ids": [
+        320
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 0,
+        "recall_at_3": 0.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 0.25
+      },
+      "generated_answer": "According to Figure 2 in the paper \"2608.24921v1\" (Section 8.2 Contribution of each mechanism), the three quantitative effects of gleaning, controlled vocabulary, and validation gates on the Wikipedia corpus are as follows:\n\n1. **Gleaning**:\n   - **Relation Recall**: Gleaning raises relation recall by 40%, increasing the number of relations from 321 to 450.\n   - **Vocabulary Cost**: The controlled vocabulary incurs minimal overhead, nearly negating the recall boost. The relation recall improvement is maintained with only a slight reduction in the number of distinct edge labels and relations with controlled vocabulary.\n\n2. **Controlled Vocabulary**:\n   - **Distinct Edge Labels vs. Relations with Controlled Vocabulary**: The controlled vocabulary increases the distinct edge labels from 57% to 11% of the total relations, and it does not support the \"not supported\" status in the context of this table. This means that the controlled vocabulary reduces the number of distinct predicates from 341 to 240 while raising the share of relations carrying a queryable predicate from 12% to 44%.\n\n3. **Validation Gates**:\n   - **Structural Defects**: The validation gates eliminate duplicate edges, short-form fragmentation, and pronoun vertices, making the graph more structured and reducing orphans.\n   - **Orphan Entities**: Orphan entities are further reduced under the vocabulary because snapping attaches relations that would otherwise be dropped as unmatched, leading to a more coherent graph structure.\n\nThese quantitative effects are presented in the figure as part of the evaluation of the system's mechanisms on the Wikipedia corpus, with the extraction model held constant to isolate the impact of each mechanism.",
+      "correctness": 2,
+      "faithfulness": 2,
+      "keyword_overlap": 0.6744,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer contains factual errors and inconsistencies with the expected answer, such as incorrect relation recall percentage, incorrect distinct predicates count, and incorrect interpretation of validation gates' effects. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer is fully grounded as it accurately reflects the information provided in the context, including the specific figures and effects described for each mechanism.",
+      "retrieval_latency_s": 0.3274,
+      "generation_latency_s": 21.8717,
+      "total_latency_s": 22.1991
+    },
+    {
+      "id": "q030",
+      "question": "In Figure 1 of the AWM paper, how does the agent interact with document pages and working memory, and how is memory-only answerability evaluated?",
+      "question_type": "figure_related",
+      "answerable": true,
+      "sub_queries": [
+        "In Figure 1 of the AWM paper, how does the agent interact with document pages and working memory, and how is memory-only answerability evaluated?"
+      ],
+      "retrieved_chunk_ids": [
+        143,
+        142,
+        144,
+        158,
+        159
+      ],
+      "gold_chunk_ids": [
+        343,
+        143,
+        144
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.3333,
+        "hit_at_3": 1,
+        "recall_at_3": 0.6667,
+        "hit_at_5": 1,
+        "recall_at_5": 0.6667,
+        "hit_at_8": 1,
+        "recall_at_8": 0.6667,
+        "hit_at_10": 1,
+        "recall_at_10": 0.6667,
+        "mrr": 1.0
+      },
+      "generated_answer": "Based on the provided context, there is insufficient information to answer this question. The context does not include a detailed description of Figure 1 or its contents. However, I can provide a structured explanation based on the information available:\n\n1. **Agent Interaction with Document Pages and Working Memory**:\n   - The agent receives a long-document VQA instance (D, q, y), where D is a multi-page document, q is the question, and y is the ground-truth answer [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n   - During interaction, the agent makes retrieval calls to retrieve candidate page images, inspects these images, and appends source-linked findings to the working memory M_t [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n   - The interaction continues until the agent outputs both a final answer \u02c6y and terminal working memory M_term, or reaches a step budget [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n\n2. **Evaluation of Memory-Only Answerability**:\n   - To evaluate memory-only answerability, a frozen reader R receives the question q and the terminal working memory M_term without the trajectory or page images [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n   - The reader produces a memory-only answer R(q, M_term) [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n   - The official judge J evaluates both the agent's final answer \u02c6y and the reader's memory-only answer R(q, M_term) against the gold answer y [Paper: 2608.25618v1 | Section: 2 Agent Setup and Memory-Quality Motivation].\n\nFor a complete understanding, one would need to refer to Figure 1 and the additional details provided in Appendix B for implementation specifics.",
+      "correctness": 2,
+      "faithfulness": 0,
+      "keyword_overlap": 0.7027,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer does not accurately describe the contents of Figure 1 or the interaction process as described in the paper. It provides a general explanation of the agent's interaction but does not specifically address how the agent interacts with document pages and working memory in Figure 1, nor does it provide details on how memory-only answerability is evaluated as shown in Figure 1. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The provided answer does not contain any factual information from the given context and instead focuses on a general explanation of the context without directly answering the question.",
+      "retrieval_latency_s": 0.6036,
+      "generation_latency_s": 311.5183,
+      "total_latency_s": 312.122
+    },
+    {
+      "id": "q031",
+      "question": "What relationship between raw accuracy and penalty-aware quality score Q is illustrated in Figure 1 of 'Why RAGs Hallucinate' across the three evaluated RAG systems?",
+      "question_type": "figure_related",
+      "answerable": true,
+      "sub_queries": [
+        "What relationship between raw accuracy and penalty-aware quality score Q is illustrated in Figure 1 of 'Why RAGs Hallucinate' across the three evaluated RAG systems?"
+      ],
+      "retrieved_chunk_ids": [
+        293,
+        318,
+        308,
+        310,
+        298
+      ],
+      "gold_chunk_ids": [
+        367,
+        308
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 0,
+        "recall_at_1": 0.0,
+        "hit_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 0.3333
+      },
+      "generated_answer": "Figure 1 in the paper \"Why RAGs Hallucinate\" illustrates the relationship between the raw accuracy and the penalty-aware quality score \\( Q \\) across the three evaluated RAG systems: OpenAI RAG, Gemini RAG, and CustomGPT.ai RAG. The figure shows that the systems with higher raw accuracy tend to have lower penalty-aware quality scores, and this relationship is particularly evident for the Gemini RAG system.\n\nSpecifically, the figure plots the quality score \\( Q \\) (error bars: bootstrap 95% CI on quality) against the canary violation rate (error bars: Wilson 95% interval on violation rate) for the three RAG systems. Gemini RAG, which achieves the highest raw accuracy of 0.968 by answering a large number of KB-absent questions from parametric memory, scores the lowest in terms of the penalty-aware quality score \\( Q \\), as it incurs a significant penalty for canary violations. In contrast, CustomGPT.ai RAG and OpenAI RAG, which abstain more frequently on KB-absent questions, achieve higher penalty-aware quality scores despite having lower raw accuracy.\n\nThe penalty-aware quality score \\( Q \\) is calculated using the formula:\n\\[ Q = \\Pr[\\text{correct}] - k \\Pr[\\text{wrong}] \\]\nwhere \\( k = 4 \\) in this study, and \\( \\Pr[\\text{correct}] \\) and \\( \\Pr[\\text{wrong}] \\) are the probabilities of a correct and incorrect answer, respectively.\n\nThis scoring mechanism penalizes incorrect answers more heavily, incentivizing the systems to be more cautious and abstain from answering questions where their knowledge is uncertain. The figure highlights that while Gemini RAG maximizes the volume of answers, it does so at the cost of incurring penalties for canary violations, leading to a lower overall quality score.",
+      "correctness": 1,
+      "faithfulness": 1,
+      "keyword_overlap": 0.5957,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness error: Invalid \\escape: line 1 column 158 (char 157) | Faithfulness error: Invalid \\escape: line 1 column 229 (char 228)",
+      "retrieval_latency_s": 0.1595,
+      "generation_latency_s": 308.1833,
+      "total_latency_s": 308.3429
+    },
+    {
+      "id": "q032",
+      "question": "According to Figure 1 in STeReO, how does the STeReO architecture differ from the traditional text-only RAG pipeline and the pipeline-cascade (ASR + Text RAG) architecture?",
+      "question_type": "figure_related",
+      "answerable": true,
+      "sub_queries": [
+        "how-does-STeReO-architecture-differ-from-traditional-text-only-RAG-pipeline",
+        "how-does-pipeline-cascade-ASR-Text-RAG-architecture-differ-from-STeReO-and-text-only-RAG"
+      ],
+      "retrieved_chunk_ids": [
+        258,
+        262,
+        257,
+        38,
+        68,
+        235,
+        85,
+        1
+      ],
+      "gold_chunk_ids": [
+        361,
+        258
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_at_8": 1,
+        "recall_at_8": 0.5,
+        "hit_at_10": 1,
+        "recall_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "generated_answer": "According to the context provided, the STeReO (Structure-aware Text Retrieval-Oriented RAG) architecture differs from both the traditional text-only RAG pipeline and the pipeline-cascade (ASR + Text RAG) architecture in several key ways:\n\n### Traditional Text-Only RAG Pipeline\nThe traditional RAG pipeline, as described in the provided context, operates in three stages:\n1. **Offline Indexing:** Documents are chunked and indexed into a vector store.\n2. **Query-Time Retrieval:** Relevant chunks are retrieved based on embedding similarity.\n3. **Context-Conditioned Generation:** The retrieved context is used to condition the generation of responses.\n\n### Pipeline-Cascade (ASR + Text RAG)\nThe pipeline-cascade architecture first involves speech-to-text (ASR) and then uses the text RAG pipeline:\n1. **ASR:** Transcribes speech into text.\n2. **Text RAG:** Uses the transcribed text as context for generation.\n\n### STeReO Architecture\nThe STeReO architecture, as per the context provided, introduces a multi-granular context-enhanced approach, which differs from the traditional text-only and pipeline-cascade architectures in the following ways:\n\n1. **Contextual Information Design:** STeReO systematically explores and designs textual context for visual elements at different granularities, considering both local and global context to facilitate cross-modal alignment. This design process is not explicitly detailed in the provided context but is a key differentiator from traditional text-only RAG, which focuses solely on text.\n\n2. **Utilization Across Stages:** STeReO leverages the designed contextual information flexibly across different stages of MMKG construction, unlike the traditional RAG, which primarily focuses on retrieving and using text chunks for context.\n\n3. **Multi-Modal Elements:** The CEMMKG framework, proposed by STeReO, specifically addresses the integration of multimodal elements, including text and images. This is a significant departure from the traditional RAG, which primarily deals with text alone, and the pipeline-cascade, which first converts speech to text before processing.\n\n4. **Enhanced Alignment:** By considering both local and global context, STeReO aims to enhance the alignment between visual elements and their textual context, which is not a primary focus in the traditional RAG or the pipeline-cascade architecture.\n\nIn summary, STeReO's architecture introduces a more comprehensive and multimodal approach to RAG, focusing on the systematic design and utilization of textual context for visual elements at different granularities, which is distinct from the traditional text-only RAG and the pipeline-cascade architectures.",
+      "correctness": 0,
+      "faithfulness": 0,
+      "keyword_overlap": 0.2927,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer does not accurately reflect the provided context and does not correctly describe the differences between STeReO and the traditional text-only RAG pipeline and the pipeline-cascade architecture as described in the expected answer. | Faithfulness: The context provided does not mention STeReO or any of the claims about its architecture, design, or distinguishing features from other RAG pipelines.",
+      "retrieval_latency_s": 0.6142,
+      "generation_latency_s": 24.2249,
+      "total_latency_s": 25.593
+    },
+    {
+      "id": "q033",
+      "question": "In Table 2 of 'When RAG Fails to Equalize', what are the reported Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment?",
+      "question_type": "numerical_experimental",
+      "answerable": true,
+      "sub_queries": [
+        "In Table 2 of 'When RAG Fails to Equalize', what are the reported Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment?"
+      ],
+      "retrieved_chunk_ids": [
+        186,
+        185,
+        180,
+        181,
+        216
+      ],
+      "gold_chunk_ids": [
+        186
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "The provided table does not contain information about Table 2 from the paper 'When RAG Fails to Equalize' or the reported Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment. The table provided is related to the statistics for accuracy given perfect context for questions about Headquarters, and it does not cover the information requested.\n\nFrom the context given, we can infer the following:\n\n1. The paper introduces a structured evaluation framework for factual QA over public companies.\n2. Table 11 in the provided text gives accuracy statistics for LLMs with perfect context for questions about Headquarters.\n3. The paper mentions four conditions for evaluation: no-context, perfect context, misleading context, and distraction context.\n\nHowever, the specific information requested about Table 2 and the accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment is not present in the provided table or context.\n\nTherefore, based on the given information, it is not possible to directly answer the question about the reported Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment from the provided table. The information might be available in another table or section of the paper not included in the provided context.\n\nTo accurately answer this question, you would need to consult the actual paper, specifically Table 2, which is referenced in the question. The relevant citation for the paper is:\n\n- Paper ID: 2608.25717v1\n- Section: C.2 Perfect Context (though this section only covers perfect context and not directional framing)\n\nGiven the limitations of the provided data, the response must reflect the lack of specific information:\n\n**Answer: The provided table does not contain the information requested about Table 2 and the Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment. The specific data needed is not present in the context provided.**",
+      "correctness": 2,
+      "faithfulness": 0,
+      "keyword_overlap": 0.6667,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The provided answer is incorrect as it misrepresents the lack of information available and does not provide the specific accuracies requested from Table 2. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The provided table does not contain the specific information requested about Table 2 and the Deductive and Inductive accuracies for LLaMA-8B and LLaMA-70B under the directional framing experiment. The specific data needed is not present in the context provided.",
+      "retrieval_latency_s": 0.1979,
+      "generation_latency_s": 19.8778,
+      "total_latency_s": 20.0758
+    },
+    {
+      "id": "q034",
+      "question": "In Table 3 of 'Why RAGs Hallucinate', what are the exact reported values for penalty-aware score Q, raw Accuracy, Abstention rate, and Canary violation rate for OpenAI RAG, Gemini RAG, and CustomGPT.ai RAG?",
+      "question_type": "numerical_experimental",
+      "answerable": true,
+      "sub_queries": [
+        "In Table 3 of 'Why RAGs Hallucinate', what are the exact reported values for penalty-aware score Q, raw Accuracy, Abstention rate, and Canary violation rate for OpenAI RAG, Gemini RAG, and CustomGPT.ai RAG?"
+      ],
+      "retrieved_chunk_ids": [
+        308,
+        310,
+        293,
+        315,
+        311
+      ],
+      "gold_chunk_ids": [
+        308
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "Based on the provided context from Table 3 in Section 5.1 Overall Comparison of Paper: 2608.26385v1, the exact reported values for penalty-aware score \\(Q\\), raw Accuracy, Abstention rate, and Canary violation rate for each system are as follows:\n\n- **OpenAI RAG:**\n  - Penalty-aware score \\(Q\\): +0.862 (+0.816, +0.903) [95% CI]\n  - Raw Accuracy: 0.948\n  - Abstention rate: 3.3%\n  - Canary violation rate: 22.2%\n\n- **Gemini RAG:**\n  - Penalty-aware score \\(Q\\): +0.793 (+0.730, +0.853) [95% CI]\n  - Raw Accuracy: 0.968\n  - Abstention rate: 0.2%\n  - Canary violation rate: 98.1%\n\n- **CustomGPT.ai RAG:**\n  - Penalty-aware score \\(Q\\): +0.767 (+0.717, +0.812) [95% CI]\n  - Raw Accuracy: 0.866\n  - Abstention rate: 11.1%\n  - Canary violation rate: 16.7%\n\nThese values are directly extracted from Table 3 of the paper.",
+      "correctness": 2,
+      "faithfulness": 1,
+      "keyword_overlap": 0.8824,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness error: Invalid \\escape: line 1 column 157 (char 156) | [Calibrated: high lexical overlap >= 0.65] | Faithfulness error: Invalid \\escape: line 1 column 135 (char 134)",
+      "retrieval_latency_s": 0.5639,
+      "generation_latency_s": 15.6811,
+      "total_latency_s": 16.2451
+    },
+    {
+      "id": "q035",
+      "question": "According to the abstract and experimental results in AWM, what percentage of correctly answered MMLONGBENCH-DOC questions fail memory-only answerability even when gold evidence pages are provided, and how many points does AWM-GRPO improve accuracy over RAG Top-3?",
+      "question_type": "numerical_experimental",
+      "answerable": true,
+      "sub_queries": [
+        "According to the abstract and experimental results in AWM, what percentage of correctly answered MMLONGBENCH-DOC questions fail memory-only answerability even when gold evidence pages are provided, and how many points does AWM-GRPO improve accuracy over RAG Top-3?"
+      ],
+      "retrieved_chunk_ids": [
+        142,
+        143,
+        156,
+        155,
+        154
+      ],
+      "gold_chunk_ids": [
+        142,
+        143
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "According to the paper, 19.9% of correctly answered MMLONGBENCH-DOC questions fail memory-only answerability even when gold evidence pages are provided. This can be seen from Table 6, which shows that the AWM-GRPO variant improves memory-only accuracy from 41.2% to 43.5%, reducing the proportion of memory-missed cases (P mmc) from 19.1% to 16.4% relative to Answer-GRPO.\n\nAWM-GRPO improves accuracy over RAG Top-3 by 11.9 points on MMLONGBENCH-DOC, as stated in the following quote from Section 4.2 Main Results: \"On MMLONGBENCH-DOC, AWM-GRPO reaches 53.9 and improves over direct input, RAG Top-3, SFT, and answer-only GRPO by 10.4, 8.1, 4.7, and 2.3 points, respectively.\" \n\nFor reference, the paper's ID is 2608.25618v1 and the relevant section is 4.2 Main Results.",
+      "correctness": 2,
+      "faithfulness": 1,
+      "keyword_overlap": 0.8571,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Correctness: The generated answer contains incorrect values and details that do not match the expected answer. The percentage of questions failing memory-only answerability is stated as 19.9%, which contradicts the expected answer of 42.5%. The improvement in accuracy over RAG Top-3 is also stated as 11.9 points, which is incorrect as the expected answer states 8.1 points. These discrepancies indicate the generated answer is entirely incorrect. | [Calibrated: high lexical overlap >= 0.65] | Faithfulness: The answer provides details not directly supported by the retrieved context, such as specific percentages (19.9%, 16.4%) and improvement points (11.9 points), which are not mentioned in the retrieved context.",
+      "retrieval_latency_s": 0.1489,
+      "generation_latency_s": 9.3842,
+      "total_latency_s": 9.5332
+    },
+    {
+      "id": "q036",
+      "question": "In CEMMKG, what was the overall soft accuracy when incorporating reference sentences as additional local context compared to incorporating full reference paragraphs on the VisionHeavy subset in Section 5.2.1?",
+      "question_type": "numerical_experimental",
+      "answerable": true,
+      "sub_queries": [
+        "In CEMMKG, what was the overall soft accuracy when incorporating reference sentences as additional local context compared to incorporating full reference paragraphs on the VisionHeavy subset in Section 5.2.1?"
+      ],
+      "retrieved_chunk_ids": [
+        251,
+        252,
+        245,
+        244,
+        243
+      ],
+      "gold_chunk_ids": [
+        251
+      ],
+      "retrieval_metrics": {
+        "hit_at_1": 1,
+        "recall_at_1": 1.0,
+        "hit_at_3": 1,
+        "recall_at_3": 1.0,
+        "hit_at_5": 1,
+        "recall_at_5": 1.0,
+        "hit_at_8": 1,
+        "recall_at_8": 1.0,
+        "hit_at_10": 1,
+        "recall_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "generated_answer": "In CEMMKG, incorporating reference sentences as additional local context on the VisionHeavy subset achieved a soft accuracy of 41.12% when using RAG-Anything as the backbone, as reported in Table 2 of the paper [Paper: 2608.25986v1 | Section: 5.2 Multimodal GraphRAG Performance]. \n\nIn contrast, directly using full reference paragraphs as additional local context achieved a soft accuracy of only 22.64% on the same subset, as stated in the same section of the paper. \n\nThese results indicate that the soft accuracy is significantly higher when using reference sentences (41.12%) compared to full reference paragraphs (22.64%) for local context in CEMMKG.",
+      "correctness": 0,
+      "faithfulness": 0,
+      "keyword_overlap": 0.5517,
+      "is_abstention": false,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 1.0,
+      "judge_notes": "Correctness: The generated answer provides incorrect values and does not accurately reflect the information from the expected answer. The expected answer mentions a soft accuracy of 36.84% for reference sentences and 22.64% for full reference paragraphs, but the generated answer gives different values of 41.12% and 22.64% respectively, which are not aligned with the expected answer. | Faithfulness: The answer does not directly support the claims made using the provided context.",
+      "retrieval_latency_s": 0.7447,
+      "generation_latency_s": 8.1516,
+      "total_latency_s": 8.8964
+    },
+    {
+      "id": "q037",
+      "question": "What learning rate schedule and number of training epochs are recommended by the authors of post-graph-rag for fine-tuning the underlying LLM extractor?",
+      "question_type": "unanswerable",
+      "answerable": false,
+      "sub_queries": [
+        "What learning rate schedule and number of training epochs are recommended by the authors of post-graph-rag for fine-tuning the underlying LLM extractor?"
+      ],
+      "retrieved_chunk_ids": [
+        27,
+        88,
+        34,
+        0,
+        33
+      ],
+      "gold_chunk_ids": [],
+      "retrieval_metrics": {},
+      "generated_answer": "Based on the provided context, there is insufficient information to answer this question. The context does not mention any learning rate schedule or number of training epochs recommended by the authors of post-graph-rag for fine-tuning the underlying LLM extractor.",
+      "correctness": null,
+      "faithfulness": null,
+      "keyword_overlap": null,
+      "is_abstention": true,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Heuristic matched: True",
+      "retrieval_latency_s": 0.1728,
+      "generation_latency_s": 3.2634,
+      "total_latency_s": 3.4362
+    },
+    {
+      "id": "q038",
+      "question": "What was the measured inference latency in milliseconds for running Homo-RAG on an NVIDIA H100 GPU cluster when processing 10,000 gene queries?",
+      "question_type": "unanswerable",
+      "answerable": false,
+      "sub_queries": [
+        "What was the measured inference latency in milliseconds for running Homo-RAG on an NVIDIA H100 GPU cluster when processing 10,000 gene queries?"
+      ],
+      "retrieved_chunk_ids": [
+        127,
+        311,
+        110,
+        133,
+        113
+      ],
+      "gold_chunk_ids": [],
+      "retrieval_metrics": {},
+      "generated_answer": "Based on the provided context, there is insufficient information to answer this question. The context does not specify the inference latency for running Homo-RAG on an NVIDIA H100 GPU cluster for processing 10,000 gene queries. The latency data provided in the context is for different RAG systems and a baseline, but it does not specify the hardware used or the exact number of queries processed.",
+      "correctness": null,
+      "faithfulness": null,
+      "keyword_overlap": null,
+      "is_abstention": true,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Heuristic matched: True",
+      "retrieval_latency_s": 0.351,
+      "generation_latency_s": 4.8784,
+      "total_latency_s": 5.2295
+    },
+    {
+      "id": "q039",
+      "question": "According to 'Why RAGs Hallucinate', what was the canary violation rate and penalty-aware score Q of the Anthropic Claude 3.5 Sonnet commercial RAG product?",
+      "question_type": "unanswerable",
+      "answerable": false,
+      "sub_queries": [
+        "According to 'Why RAGs Hallucinate', what was the canary violation rate and penalty-aware score Q of the Anthropic Claude 3.5 Sonnet commercial RAG product?"
+      ],
+      "retrieved_chunk_ids": [
+        318,
+        310,
+        293,
+        308,
+        315
+      ],
+      "gold_chunk_ids": [],
+      "retrieval_metrics": {},
+      "generated_answer": "Based on the provided context, there is insufficient information to answer this question. The context does not contain any information about the Anthropic Claude 3.5 Sonnet commercial RAG product. The RAG systems discussed are OpenAI RAG, Gemini RAG, and CustomGPT.ai RAG. No data is available for Anthropic Claude 3.5 Sonnet in the given text.",
+      "correctness": null,
+      "faithfulness": null,
+      "keyword_overlap": null,
+      "is_abstention": true,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Heuristic matched: True",
+      "retrieval_latency_s": 0.1789,
+      "generation_latency_s": 5.1442,
+      "total_latency_s": 5.3231
+    },
+    {
+      "id": "q040",
+      "question": "Which quantum computing algorithms or quantum annealing hardware are proposed in the 10 papers to optimize graph traversals in Graph RAG?",
+      "question_type": "unanswerable",
+      "answerable": false,
+      "sub_queries": [
+        "Which quantum computing algorithms or quantum annealing hardware are proposed in the 10 papers to optimize graph traversals in Graph RAG?"
+      ],
+      "retrieved_chunk_ids": [
+        33,
+        1,
+        96,
+        238,
+        95
+      ],
+      "gold_chunk_ids": [],
+      "retrieval_metrics": {},
+      "generated_answer": "Based on the provided context, there is insufficient information to answer this question. The context does not mention any quantum computing algorithms or quantum annealing hardware proposed in any of the papers to optimize graph traversals in Graph RAG.",
+      "correctness": null,
+      "faithfulness": null,
+      "keyword_overlap": null,
+      "is_abstention": true,
+      "is_hallucination": false,
+      "citation_correct": 1.0,
+      "citation_complete": 0.0,
+      "judge_notes": "Heuristic matched: True",
+      "retrieval_latency_s": 0.193,
+      "generation_latency_s": 3.848,
+      "total_latency_s": 4.041
+    }
+  ]
+}

@@ -43,6 +43,8 @@ class Reranker:
         use_rank_fusion: bool = True,
         rrf_weight: float = DEFAULT_RRF_WEIGHT,
         fusion_k: int = DEFAULT_FUSION_K,
+        sub_queries: Optional[list[str]] = None,
+        enforce_quota: bool = True,
     ) -> list[dict]:
         """Rerank candidates using cross-encoder relevance scores and Two-Stage Rank Fusion.
 
@@ -55,6 +57,9 @@ class Reranker:
                              to prevent false-positive drift and preserve high recall.
             rrf_weight: Weight given to first-stage RRF rank (0.60 optimal per grid search).
             fusion_k: Smoothing constant for reciprocal rank fusion.
+            sub_queries: Optional list of decomposed sub-queries for entity balance.
+            enforce_quota: If True and multiple sub-queries exist, guarantees representation
+                           of each entity in final top_k.
 
         Returns:
             Top-K candidate chunks sorted by final relevance score descending.
@@ -97,8 +102,34 @@ class Reranker:
             for c in scored:
                 c["final_score"] = c["reranker_score"]
 
-        # Return top_k with final rank
-        final_results = scored[:top_k]
+        # Entity Quota Selection when multiple sub-queries are present
+        if sub_queries and len(sub_queries) > 1 and enforce_quota:
+            num_sub = len(sub_queries)
+            min_per_subquery = max(1, top_k // (num_sub * 2))  # e.g. for top_k=8 and 2 subqueries -> 2 per subquery
+            selected_cids: set[int] = set()
+            selected_chunks: list[dict] = []
+
+            # 1. Fill minimum quota per sub-query
+            for q_idx in range(num_sub):
+                matching = [c for c in scored if q_idx in c.get("sub_query_sources", []) and c["chunk_id"] not in selected_cids]
+                for c in matching[:min_per_subquery]:
+                    selected_cids.add(c["chunk_id"])
+                    selected_chunks.append(c)
+
+            # 2. Fill remaining slots up to top_k by highest final_score
+            for c in scored:
+                if len(selected_chunks) >= top_k:
+                    break
+                if c["chunk_id"] not in selected_cids:
+                    selected_cids.add(c["chunk_id"])
+                    selected_chunks.append(c)
+
+            # 3. Sort selected chunks by final_score descending
+            selected_chunks.sort(key=lambda x: x["final_score"], reverse=True)
+            final_results = selected_chunks
+        else:
+            final_results = scored[:top_k]
+
         for rank, c in enumerate(final_results, 1):
             c["final_rank"] = rank
 
