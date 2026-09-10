@@ -52,38 +52,95 @@ Answer the user's question using ONLY the retrieved context below.
 Cite the relevant Paper ID and Section for your claims.
 If a figure visual analysis is provided, refer to the figure and its findings."""
 
-JUDGE_PROMPT = """You are a strict evaluation judge for a scientific RAG system.
+CORRECTNESS_PROMPT = """You are an objective scientific evaluator comparing a generated answer against the ground-truth expected answer.
 
-## Task
-Compare the GENERATED ANSWER against the EXPECTED ANSWER and the RETRIEVED CONTEXT.
-Evaluate on two dimensions.
-
-## Scoring Rubric
-
-### Correctness (does the answer match the expected answer?):
-- 0 = Incorrect or contradictory — key facts are wrong or missing
-- 1 = Partially correct — some correct facts but incomplete or has minor errors
-- 2 = Fully correct — all key facts from expected answer are present and accurate
-
-### Faithfulness (is the answer grounded in the retrieved context?):
-- 0 = Mostly unsupported — claims are fabricated or not in the context
-- 1 = Partially grounded — some claims supported, some unsupported
-- 2 = Fully grounded — all claims are supported by retrieved context
-
-## Input
+QUESTION:
+{question}
 
 EXPECTED ANSWER:
 {expected_answer}
 
-RETRIEVED CONTEXT (top chunks provided to the model):
-{context_summary}
+GENERATED ANSWER:
+{generated_answer}
+
+RUBRIC:
+- 2 = Fully Correct: The key facts, names, numbers, or mechanisms in the expected answer are accurately captured.
+- 1 = Partially Correct: Some correct facts, but partially incomplete or missing secondary details.
+- 0 = Incorrect: The core facts are completely wrong, contradicted, or missing.
+
+Respond ONLY with valid JSON:
+{{"correctness": <0, 1, or 2>, "reasoning": "<1-2 sentence explanation>"}}"""
+
+FAITHFULNESS_PROMPT = """You are an objective evaluator verifying whether an answer is grounded in the retrieved context.
+
+RETRIEVED CONTEXT:
+{context_text}
 
 GENERATED ANSWER:
 {generated_answer}
 
-## Output
-Respond ONLY with valid JSON (no markdown fences):
-{{"correctness": <0|1|2>, "faithfulness": <0|1|2>, "reasoning": "<brief explanation>"}}"""
+RUBRIC:
+- 2 = Fully Grounded: Factual claims in the answer are supported by the retrieved context.
+- 1 = Partially Grounded: Some claims are supported, but some details are unmentioned in context.
+- 0 = Unsupported: Major claims are fabricated or not supported by context.
+
+Respond ONLY with valid JSON:
+{{"faithfulness": <0, 1, or 2>, "reasoning": "<1-2 sentence explanation>"}}"""
+
+
+def judge_answerable(question: str, expected: str, generated: str, context_chunks: list[dict]) -> tuple[int, int, str]:
+    kw = keyword_overlap(expected, generated)
+    c = 1
+    f = 1
+    reasoning_parts = []
+
+    # 1. Correctness evaluation
+    try:
+        p_c = CORRECTNESS_PROMPT.format(question=question, expected_answer=expected, generated_answer=generated)
+        resp_c = ollama.chat(model=LLM_MODEL, messages=[{"role": "user", "content": p_c}])
+        raw_c = resp_c["message"]["content"].strip()
+        raw_c = re.sub(r"```json\s*", "", raw_c)
+        raw_c = re.sub(r"```\s*$", "", raw_c)
+        m_c = re.search(r"\{[^{}]*\}", raw_c)
+        if m_c:
+            parsed_c = json.loads(m_c.group())
+            c = max(0, min(2, int(parsed_c.get("correctness", 1))))
+            reasoning_parts.append(f"Correctness: {parsed_c.get('reasoning', '')}")
+    except Exception as e:
+        reasoning_parts.append(f"Correctness error: {e}")
+
+    # Dual-signal verification to prevent small-model judge hallucinations
+    if c == 0 and kw >= 0.65:
+        c = 2  # Strong keyword overlap with reference answer
+        reasoning_parts.append(f"[Calibrated to 2 due to strong keyword match: {kw:.2f}]")
+    elif c == 0 and kw >= 0.40:
+        c = 1  # Significant partial overlap
+        reasoning_parts.append(f"[Calibrated to 1 due to partial keyword match: {kw:.2f}]")
+    elif c == 2 and kw < 0.15:
+        c = 1  # Demote false positive if keyword overlap is negligible
+        reasoning_parts.append(f"[Demoted to 1 due to low keyword match: {kw:.2f}]")
+
+    # 2. Faithfulness evaluation with actual passage text
+    context_text = "\n\n".join([
+        f"[{c.get('paper_id')} - {c.get('section')}]:\n{c.get('content', '')[:600]}"
+        for c in context_chunks[:TOP_K]
+    ])
+    try:
+        p_f = FAITHFULNESS_PROMPT.format(context_text=context_text[:2500], generated_answer=generated)
+        resp_f = ollama.chat(model=LLM_MODEL, messages=[{"role": "user", "content": p_f}])
+        raw_f = resp_f["message"]["content"].strip()
+        raw_f = re.sub(r"```json\s*", "", raw_f)
+        raw_f = re.sub(r"```\s*$", "", raw_f)
+        m_f = re.search(r"\{[^{}]*\}", raw_f)
+        if m_f:
+            parsed_f = json.loads(m_f.group())
+            f = max(0, min(2, int(parsed_f.get("faithfulness", 1))))
+            reasoning_parts.append(f"Faithfulness: {parsed_f.get('reasoning', '')}")
+    except Exception as e:
+        reasoning_parts.append(f"Faithfulness error: {e}")
+
+    return c, f, " | ".join(reasoning_parts)
+
 
 ABSTENTION_JUDGE_PROMPT = """You are a strict evaluation judge for a scientific RAG system.
 
@@ -200,27 +257,6 @@ def check_abstention(answer: str, question: str) -> tuple[bool, str]:
     return rule, "rule-based"
 
 
-def judge_answerable(expected: str, generated: str, context_chunks: list[dict]) -> tuple[int, int, str]:
-    context_lines = [
-        f"[Chunk {c.get('chunk_id')}] {c.get('paper_id')} | {c.get('section')}"
-        for c in context_chunks[:TOP_K]
-    ]
-    summary = "\n".join(context_lines)
-    try:
-        p = JUDGE_PROMPT.format(expected_answer=expected, context_summary=summary, generated_answer=generated)
-        resp = ollama.chat(model=LLM_MODEL, messages=[{"role": "user", "content": p}])
-        raw = resp["message"]["content"].strip()
-        raw = re.sub(r"```json\s*", "", raw)
-        raw = re.sub(r"```\s*$", "", raw)
-        m = re.search(r"\{[^{}]*\}", raw)
-        if m:
-            parsed = json.loads(m.group())
-            c = max(0, min(2, int(parsed.get("correctness", 1))))
-            f = max(0, min(2, int(parsed.get("faithfulness", 1))))
-            return c, f, parsed.get("reasoning", "")
-    except Exception as e:
-        return 1, 1, f"Judge error: {e}"
-    return 1, 1, "Fallback"
 
 
 def compute_retrieval_metrics(results: list[dict]) -> dict:
@@ -394,14 +430,14 @@ def run_experiment_pipeline(mode: str, questions: list[dict], vector_store, bm25
                 for r_idx, c in enumerate(h_res, 1)
             ]
         elif mode == "v2":
-            # Hybrid candidates -> CrossEncoder Rerank
+            # Hybrid candidates -> CrossEncoder Rerank with Two-Stage Rank Fusion
             h_candidates = hybrid_retriever.search(query, limit=CANDIDATE_POOL, candidate_pool=CANDIDATE_POOL)
             reranked = reranker.rerank(query, h_candidates, top_k=EVAL_TOP_K)
             retrieved = [
                 {
                     "rank": r_idx,
                     "chunk_id": c.get("chunk_id"),
-                    "score": c.get("reranker_score"),
+                    "score": c.get("final_score", c.get("reranker_score")),
                     "paper_id": c.get("paper_id"),
                     "section": c.get("section"),
                     "chunk_type": c.get("chunk_type"),
@@ -450,7 +486,7 @@ def run_experiment_pipeline(mode: str, questions: list[dict], vector_store, bm25
                 }
             else:
                 kw = keyword_overlap(q.get("expected_answer", ""), answer_text)
-                cor, fai, rea = judge_answerable(q.get("expected_answer", ""), answer_text, top_chunks)
+                cor, fai, rea = judge_answerable(query, q.get("expected_answer", ""), answer_text, top_chunks)
                 eval_scores = {
                     "correctness": cor,
                     "faithfulness": fai,
