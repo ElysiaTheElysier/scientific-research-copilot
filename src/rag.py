@@ -11,12 +11,18 @@ from src.retrieval.hybrid import HybridRetriever
 from src.retrieval.reranker import Reranker
 from src.retrieval.vectordb import VectorStore
 
-DEFAULT_MODEL = "qwen2.5:3b"
+DEFAULT_MODEL = "qwen2.5:7b"
 
-SYSTEM_PROMPT = """You are an evidence-grounded scientific research assistant.
-Answer the user's question using ONLY the retrieved context below.
-Cite the relevant Paper ID and Section for your claims.
-If a figure visual analysis is provided, refer to the figure and its findings."""
+SYSTEM_PROMPT = """You are an expert scientific research assistant.
+Answer the user's question accurately, completely, and objectively using ONLY the retrieved context below.
+
+Follow these strict guidelines:
+1. Grounding & Abstention: Ground every statement strictly in the provided context. If the context does not contain sufficient information to answer the question or any of its sub-questions, explicitly state: "Based on the provided context, there is insufficient information to answer this question." Do not speculate, extrapolate, or use external knowledge.
+2. Technical Precision: Preserve all exact technical terminology, mathematical notation, model names, dataset names, acronyms, and quantitative metrics exactly as written in the text without paraphrase or approximation.
+3. Multi-Part & Comparison Questions: Thoroughly address ALL components of multi-part questions. For comparison or contrast questions, explicitly describe each entity or concept being compared and highlight their distinct mechanisms, differences, or trade-offs.
+4. Grounded Citations: Explicitly cite the source Paper ID and Section name (e.g., [Paper: 2608.01234 | Section: 3.2 Methodology]) for each factual assertion.
+5. Multimodal Evidence: If a figure visual analysis is present in the context, refer directly to the figure findings, trends, and visual data in your explanation.
+6. Conciseness & Structure: Be direct, structured, and concise. Do not include internal thinking tags or filler commentary."""
 
 RetrievalMode = Literal["dense", "bm25", "hybrid", "v2"]
 
@@ -28,7 +34,7 @@ class ScientificRAG:
     - 'dense': Pure vector search (V1 baseline)
     - 'bm25': Pure lexical keyword search
     - 'hybrid': Reciprocal Rank Fusion (Dense + BM25)
-    - 'v2': Full V2 pipeline (Dense + BM25 -> RRF -> Cross-Encoder Reranker)
+    - 'v2': Full V2/V2.1 pipeline (Dense + BM25 -> RRF -> Two-Stage Cross-Encoder Reranker)
     """
 
     def __init__(
@@ -36,7 +42,7 @@ class ScientificRAG:
         model_name: str = DEFAULT_MODEL,
         top_k: int = 5,
         retrieval_mode: RetrievalMode = "v2",
-        candidate_pool: int = 20,
+        candidate_pool: int = 25,
     ):
         self.model_name = model_name
         self.top_k = top_k
@@ -146,10 +152,11 @@ def main():
         help="Retrieval mode (dense=V1, bm25, hybrid, v2=hybrid+reranker; default: v2)",
     )
     parser.add_argument("--top-k", type=int, default=5, help="Number of chunks in generation context (default: 5)")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Ollama LLM model to use (default: {DEFAULT_MODEL})")
 
     args = parser.parse_args()
 
-    rag = ScientificRAG(retrieval_mode=args.mode, top_k=args.top_k)
+    rag = ScientificRAG(model_name=args.model, retrieval_mode=args.mode, top_k=args.top_k)
 
     if args.query and not args.interactive:
         query = " ".join(args.query)
